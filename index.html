@@ -429,6 +429,16 @@
       <h3>Export & Reports</h3>
       <p>Generate PDF financial reports, export CSV/Excel, and take full JSON backups of all 18 tables.</p>
     </div>
+    <div class="feat-card">
+      <div class="feat-icon">🏦</div>
+      <h3>Apple Wallet Import</h3>
+      <p>Import transactions directly from Apple Wallet via FinanceKit (iOS 17.4+). MCC auto-categorization, duplicate detection, and merge/overwrite policies.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔗</div>
+      <h3>Supabase Cloud Sync</h3>
+      <p>Optional Supabase backend with real-time sync, Edge Functions, and PostgreSQL — replacing 10 Spring Boot microservices with zero infrastructure.</p>
+    </div>
   </div>
 </section>
 
@@ -458,6 +468,7 @@
           <li><span class="icon icon-yes">✓</span><span><strong>Export &amp; reports</strong> — CSV, Excel, PDF, and full JSON backup</span></li>
           <li><span class="icon icon-yes">✓</span><span><strong>Google Drive sync</strong> — optional cloud backup &amp; restore</span></li>
           <li><span class="icon icon-yes">✓</span><span><strong>AI categorization</strong> — rule-based auto-tagging with self-learning</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>Apple Wallet import</strong> — FinanceKit integration on iOS 17.4+ with smart categorization</span></li>
           <li><span class="icon icon-yes">✓</span><span><strong>Localization</strong> — English, Greek, Spanish, French</span></li>
         </ul>
       </div>
@@ -482,7 +493,7 @@
           <li><span class="icon icon-lock">✦</span><span><strong>Shared expenses</strong> — log and settle expenses across workspace members with full audit trail</span></li>
           <li><span class="icon icon-lock">✦</span><span><strong>Workspace budgets</strong> — team-scoped budget tracking separate from personal budgets</span></li>
           <li><span class="icon icon-lock">✦</span><span><strong>Email workspace invites</strong> — invite collaborators by email with role assignment</span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Real-time sync</strong> — WebSocket-powered live updates across workspace members <span class="coming-soon-chip">Coming soon</span></span></li>
+          <li><span class="icon icon-lock">✦</span><span><strong>Real-time sync</strong> — Supabase Realtime-powered live updates across workspace members</span></li>
           <li><span class="icon icon-lock">✦</span><span><strong>Push notifications</strong> — alerts for shared expenses, settlements, and workspace activity <span class="coming-soon-chip">Coming soon</span></span></li>
           <li><span class="icon icon-lock">✦</span><span><strong>Scheduled reports</strong> — automated email delivery of financial summaries on your chosen frequency <span class="coming-soon-chip">Coming soon</span></span></li>
         </ul>
@@ -518,7 +529,9 @@
       <div class="table-row"><span>QR Transaction Sharing</span><span class="badge badge-yes">Always on</span></div>
       <div class="table-row"><span>Group Expense Splitting</span><span class="badge badge-yes">Always on</span></div>
       <div class="table-row"><span>CSV / Excel / JSON Export</span><span class="badge badge-yes">Always on</span></div>
+      <div class="table-row"><span>Apple Wallet Import</span><span class="badge badge-yes">Always on</span></div>
       <div class="table-row"><span>Google Drive Sync</span><span class="badge badge-opt">Optional</span></div>
+      <div class="table-row"><span>Supabase Cloud Sync</span><span class="badge badge-opt">Optional</span></div>
       <div class="table-row"><span>Push Notifications</span><span class="badge badge-opt">Optional</span></div>
       <div class="table-row"><span>Backend OCR (PaddleOCR)</span><span class="badge badge-opt">Optional</span></div>
     </div>
@@ -529,7 +542,7 @@
 <section id="tech" class="stack-section">
   <p class="section-label center">Under the hood</p>
   <h2 class="section-title center">Modern tech, proven stack</h2>
-  <p class="section-sub center">Flutter for cross-platform mobile &amp; web. Spring Cloud microservices for optional backend collaboration features.</p>
+  <p class="section-sub center">Flutter for cross-platform mobile &amp; web. Supabase for optional cloud backend — no infrastructure to manage.</p>
   <div class="stack-cols">
     <div class="stack-col">
       <h3>📱 Flutter Frontend</h3>
@@ -546,23 +559,21 @@
         <span class="tag">Material 3</span>
         <span class="tag">WASM (Web)</span>
         <span class="tag">in_app_purchase</span>
+        <span class="tag">Apple FinanceKit</span>
+        <span class="tag">supabase_flutter</span>
       </div>
     </div>
     <div class="stack-col">
-      <h3>⚙️ Spring Boot Backend</h3>
+      <h3>☁️ Supabase Backend</h3>
       <div class="tag-list">
-        <span class="tag">Spring Boot 3.x</span>
-        <span class="tag">Java 17</span>
-        <span class="tag">Spring Cloud</span>
-        <span class="tag">Netflix Eureka</span>
-        <span class="tag">Keycloak</span>
-        <span class="tag">MySQL 8</span>
-        <span class="tag">MongoDB</span>
-        <span class="tag">Redis 7</span>
-        <span class="tag">Apache Kafka</span>
-        <span class="tag">Flyway</span>
-        <span class="tag">Prometheus</span>
-        <span class="tag">Grafana + Loki</span>
+        <span class="tag">PostgreSQL + RLS</span>
+        <span class="tag">PostgREST</span>
+        <span class="tag">Edge Functions</span>
+        <span class="tag">Deno / TypeScript</span>
+        <span class="tag">GoTrue Auth</span>
+        <span class="tag">Realtime</span>
+        <span class="tag">pg_cron</span>
+        <span class="tag">DB Functions</span>
       </div>
     </div>
   </div>
