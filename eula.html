@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>End User License Agreement — Penny</title>
+  <meta name="description" content="End User License Agreement and Terms of Service for Penny personal finance application." />
+  <meta property="og:image" content="assets/img/penny_icon.png" />
+  <link rel="icon" type="image/png" href="assets/img/penny_icon.png" />
+  <link rel="apple-touch-icon" href="assets/img/penny_icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --violet:   #6C5CE7;
+      --violet-d: #5849c4;
+      --green:    #10B981;
+      --red:      #EF4444;
+      --bg:       #0f0e17;
+      --bg2:      #16151f;
+      --bg3:      #1e1c2e;
+      --text:     #f0eeff;
+      --muted:    #9b97b8;
+      --border:   rgba(108,92,231,.18);
+      --radius:   14px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1rem, 5vw, 3rem);
+      height: 64px;
+      background: rgba(15,14,23,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-gem {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+    .nav-logo span { font-weight: 700; font-size: 1.15rem; color: var(--text); }
+    .nav-back {
+      color: var(--muted); text-decoration: none; font-size: .875rem;
+      font-weight: 500; display: flex; align-items: center; gap: .4rem;
+      transition: color .2s;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 6vw, 3rem) 2rem;
+      text-align: center;
+      background: radial-gradient(ellipse 70% 50% at 50% -5%, rgba(108,92,231,.28) 0%, transparent 65%);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero .label {
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--violet); margin-bottom: .75rem;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+      letter-spacing: -.03em; margin-bottom: .75rem;
+    }
+    .page-hero p { color: var(--muted); font-size: .95rem; max-width: 520px; margin: 0 auto; }
+    .effective-badge {
+      display: inline-block; margin-top: 1.25rem;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 100px; padding: .35rem 1rem;
+      font-size: .8rem; color: var(--muted); font-weight: 500;
+    }
+
+    /* ── LAYOUT ── */
+    .content-wrap {
+      max-width: 820px; margin: 0 auto;
+      padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+    }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem 1.75rem;
+      margin-bottom: 3rem;
+    }
+    .toc h2 {
+      font-size: .78rem; font-weight: 600; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+    }
+    .toc ol { padding-left: 1.25rem; display: flex; flex-direction: column; gap: .4rem; }
+    .toc li { font-size: .875rem; }
+    .toc a { color: var(--violet); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* ── SECTIONS ── */
+    .eula-section { margin-bottom: 3rem; scroll-margin-top: 80px; }
+    .eula-section h2 {
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;
+      padding-bottom: .6rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .sec-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; background: rgba(108,92,231,.2);
+      color: var(--violet); border-radius: 6px;
+      font-size: .75rem; font-weight: 700; flex-shrink: 0;
+    }
+    .eula-section p { color: var(--muted); font-size: .925rem; margin-bottom: .85rem; }
+    .eula-section p:last-child { margin-bottom: 0; }
+    .eula-section ul, .eula-section ol {
+      color: var(--muted); font-size: .925rem;
+      padding-left: 1.5rem; margin-bottom: .85rem;
+      display: flex; flex-direction: column; gap: .45rem;
+    }
+    .eula-section strong { color: var(--text); font-weight: 600; }
+
+    /* ── CALLOUT BOXES ── */
+    .callout {
+      border-radius: 10px; padding: 1rem 1.25rem;
+      margin: 1.25rem 0; font-size: .9rem;
+    }
+    .callout-warn {
+      background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3);
+      color: #fca5a5;
+    }
+    .callout-info {
+      background: rgba(108,92,231,.1); border: 1px solid rgba(108,92,231,.3);
+      color: #c4b5fd;
+    }
+    .callout strong { color: inherit; font-weight: 700; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 2rem clamp(1rem, 6vw, 3rem);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .footer-logo span { color: var(--muted); font-size: .875rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--muted); font-size: .85rem; text-decoration: none; transition: color .2s; }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img class="logo-gem" src="assets/img/penny_icon.png" alt="Penny logo" />
+    <span>Penny</span>
+  </a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <p class="label">Legal</p>
+  <h1>End User License Agreement</h1>
+  <p>Please read this agreement carefully before downloading, installing, or using the Penny application.</p>
+  <span class="effective-badge">Effective date: 18 March 2026</span>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <div class="callout callout-warn">
+    <strong>Important:</strong> By downloading, installing, accessing, or using Penny, you agree to be bound by the terms of this End User License Agreement ("Agreement"). If you do not agree, do not install or use the application.
+  </div>
+
+  <!-- TOC -->
+  <div class="toc">
+    <h2>Table of Contents</h2>
+    <ol>
+      <li><a href="#s1">Parties and Definitions</a></li>
+      <li><a href="#s2">Grant of License</a></li>
+      <li><a href="#s3">Intellectual Property and Ownership</a></li>
+      <li><a href="#s4">Restrictions</a></li>
+      <li><a href="#s5">User Data and Privacy</a></li>
+      <li><a href="#s6">Premium Features and Subscriptions</a></li>
+      <li><a href="#s7">Third-Party Services</a></li>
+      <li><a href="#s8">Disclaimer of Warranties</a></li>
+      <li><a href="#s9">Limitation of Liability</a></li>
+      <li><a href="#s10">Indemnification</a></li>
+      <li><a href="#s11">Updates and Changes</a></li>
+      <li><a href="#s12">Termination</a></li>
+      <li><a href="#s13">Governing Law</a></li>
+      <li><a href="#s14">Contact Information</a></li>
+    </ol>
+  </div>
+
+  <!-- 1 -->
+  <div class="eula-section" id="s1">
+    <h2><span class="sec-num">1</span> Parties and Definitions</h2>
+    <p><strong>"Licensor"</strong> refers to the developer and owner of Penny and all associated intellectual property. <strong>"Application"</strong> refers to the Penny personal finance software, including all versions, updates, features, source code, compiled binaries, associated documentation, design assets, algorithms, and backend services. <strong>"User"</strong> (or "you") refers to any individual or entity that downloads, installs, accesses, or otherwise uses the Application. <strong>"Device"</strong> means any smartphone, tablet, computer, or other compatible hardware on which the Application is installed or accessed.</p>
+    <p><strong>"Premium Features"</strong> refers to any functionality, content, or capability gated behind a subscription or in-app purchase within the Application. <strong>"Content"</strong> means all software code, text, graphics, interfaces, images, algorithms, data models, localization strings, and audiovisual elements contained in or delivered through the Application.</p>
+  </div>
+
+  <!-- 2 -->
+  <div class="eula-section" id="s2">
+    <h2><span class="sec-num">2</span> Grant of License</h2>
+    <p>Subject to your acceptance of and continued compliance with this Agreement, the Licensor grants you a <strong>limited, non-exclusive, non-transferable, non-sublicensable, revocable license</strong> to install and use one copy of the Application on a Device that you own or control, solely for your personal, non-commercial purposes.</p>
+    <p>This license does not constitute a sale of the Application or any portion of it. No title to or ownership of the Application or any intellectual property rights therein is transferred to you under this Agreement.</p>
+    <div class="callout callout-info">
+      <strong>Scope:</strong> This license is limited strictly to end-use of the compiled Application as delivered through official distribution channels (App Store, Google Play, or direct download provided by the Licensor). It does not extend to the source code, backend infrastructure, design system, algorithms, or any other underlying component.
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="eula-section" id="s3">
+    <h2><span class="sec-num">3</span> Intellectual Property and Ownership</h2>
+    <p>The Licensor retains <strong>all right, title, and interest</strong> in and to the Application and all Content, including but not limited to:</p>
+    <ul>
+      <li>All source code, compiled binaries, scripts, and build configurations</li>
+      <li>The "Ether" design system, including all UI components, color tokens, typography, spacing systems, animations, and visual language</li>
+      <li>All algorithms, including transaction categorization logic, receipt OCR parsing, exchange rate calculation, ECDSA cryptographic implementations, and offline sync mechanisms</li>
+      <li>All database schemas, migration scripts, data models, and query logic</li>
+      <li>All backend microservice architecture, API contracts, and infrastructure code</li>
+      <li>All localization content across English, Greek, Spanish, and French</li>
+      <li>All marketing materials, landing pages, screenshots, icons, and promotional assets</li>
+      <li>All trade names, trademarks, service marks, and logos associated with Penny</li>
+    </ul>
+    <p>Nothing in this Agreement shall be construed as granting you any right or license to use any trademark, service mark, logo, or trade name of the Licensor. The Application is protected by copyright law, trade secret law, and other applicable intellectual property laws and treaties.</p>
+    <div class="callout callout-warn">
+      <strong>All Rights Reserved.</strong> No rights are granted to you other than the limited end-user license expressly set forth in Section 2. Any use of the Application not expressly permitted by this Agreement is strictly prohibited.
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="eula-section" id="s4">
+    <h2><span class="sec-num">4</span> Restrictions</h2>
+    <p>You agree that you will not, and will not permit or facilitate any third party to:</p>
+    <ul>
+      <li><strong>Copy or reproduce</strong> the Application or any portion of it, except as expressly permitted by this Agreement or applicable law</li>
+      <li><strong>Modify, adapt, translate, or create derivative works</strong> based on the Application, its source code, design system, or any Content</li>
+      <li><strong>Reverse engineer, decompile, disassemble,</strong> or otherwise attempt to derive the source code, underlying algorithms, or data structures of the Application</li>
+      <li><strong>Redistribute, sublicense, sell, resell, rent, lease, or transfer</strong> the Application or any rights in it to any third party</li>
+      <li><strong>Remove or alter</strong> any proprietary notices, copyright notices, trademarks, or labels on the Application</li>
+      <li><strong>Use the Application for commercial purposes,</strong> including building competing products or services that incorporate the Application's features, algorithms, or design</li>
+      <li><strong>Use automated tools</strong> (bots, scrapers, crawlers) to extract data, replicate functionality, or interact with the Application in any non-human manner</li>
+      <li><strong>Circumvent, bypass, or disable</strong> any security, access control, premium gate, or license enforcement mechanisms in the Application</li>
+      <li><strong>Use the Application</strong> to violate any applicable local, national, or international law or regulation</li>
+      <li><strong>Publicly display, publicly perform, or broadcast</strong> any portion of the Application without the prior written consent of the Licensor</li>
+    </ul>
+  </div>
+
+  <!-- 5 -->
+  <div class="eula-section" id="s5">
+    <h2><span class="sec-num">5</span> User Data and Privacy</h2>
+    <p>Penny is designed as an <strong>offline-first application</strong>. By default, all financial data you enter — including transactions, budgets, savings goals, categories, and personal notes — is stored exclusively on your Device and is never transmitted to the Licensor's servers without your explicit action.</p>
+    <p>You retain full ownership of the personal financial data you input into the Application. The Licensor does not access, collect, sell, or share your personal financial data except as described in the Privacy Policy.</p>
+    <p>Optional features that involve data transmission (including Google Drive sync, backend collaboration workspaces, and self-hosted OCR backends) are strictly opt-in and require your affirmative action to enable. You are solely responsible for the security of your Device and any credentials used with the Application.</p>
+    <p>Your use of the Application is also governed by the Penny Privacy Policy, which is incorporated into this Agreement by reference.</p>
+  </div>
+
+  <!-- 6 -->
+  <div class="eula-section" id="s6">
+    <h2><span class="sec-num">6</span> Premium Features and Subscriptions</h2>
+    <p>Certain advanced features of the Application ("Premium Features") require payment of a recurring subscription fee. Subscription terms, pricing, and billing cycles are presented at the time of purchase within the Application.</p>
+    <ul>
+      <li>Subscriptions are managed through the relevant app store platform (Apple App Store or Google Play) and are subject to that platform's terms</li>
+      <li>Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current billing period</li>
+      <li>The Licensor reserves the right to change pricing with reasonable notice</li>
+      <li>No refunds are provided for partial subscription periods except as required by applicable law or platform policy</li>
+      <li>The Licensor reserves the right to modify, suspend, or discontinue any Premium Feature at any time</li>
+    </ul>
+    <p>During the testing phase, certain Premium Features may be accessible without payment via an alpha toggle. This access is provided at the Licensor's sole discretion and may be revoked at any time without notice.</p>
+  </div>
+
+  <!-- 7 -->
+  <div class="eula-section" id="s7">
+    <h2><span class="sec-num">7</span> Third-Party Services</h2>
+    <p>The Application may integrate with or depend on third-party services, including but not limited to:</p>
+    <ul>
+      <li><strong>Google Sign-In and Google Drive</strong> — governed by Google's Terms of Service and Privacy Policy</li>
+      <li><strong>Apple Sign-In and Apple FinanceKit</strong> — governed by Apple's Terms of Service</li>
+      <li><strong>EC InforEuro</strong> — exchange rate data sourced from the European Commission</li>
+      <li><strong>Google ML Kit</strong> — on-device OCR text recognition</li>
+      <li><strong>Firebase Cloud Messaging</strong> — optional push notification delivery</li>
+      <li><strong>AdMob</strong> — advertising on the free tier, governed by Google's advertising policies</li>
+    </ul>
+    <p>The Licensor is not responsible for the availability, accuracy, or terms of any third-party service. Your use of third-party services is subject to those services' respective terms and privacy policies. The Licensor does not endorse any third-party service.</p>
+  </div>
+
+  <!-- 8 -->
+  <div class="eula-section" id="s8">
+    <h2><span class="sec-num">8</span> Disclaimer of Warranties</h2>
+    <p>THE APPLICATION IS PROVIDED <strong>"AS IS"</strong> AND <strong>"AS AVAILABLE"</strong> WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE LICENSOR EXPRESSLY DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO:</p>
+    <ul>
+      <li>Implied warranties of merchantability, fitness for a particular purpose, and non-infringement</li>
+      <li>Any warranty that the Application will meet your requirements or be available on an uninterrupted, secure, or error-free basis</li>
+      <li>Any warranty regarding the accuracy, reliability, or completeness of any financial data, exchange rates, calculations, or analytics produced by the Application</li>
+    </ul>
+    <p>The Application is a personal finance tracking tool and does not constitute financial advice. The Licensor is not a financial advisor, broker, or fiduciary. You are solely responsible for all financial decisions you make based on information displayed in the Application.</p>
+  </div>
+
+  <!-- 9 -->
+  <div class="eula-section" id="s9">
+    <h2><span class="sec-num">9</span> Limitation of Liability</h2>
+    <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE LICENSOR BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO:</p>
+    <ul>
+      <li>Loss of data, loss of profits, loss of goodwill, or business interruption</li>
+      <li>Financial loss arising from reliance on data, calculations, or analytics produced by the Application</li>
+      <li>Unauthorized access to or alteration of your data</li>
+      <li>Any other matter relating to the Application</li>
+    </ul>
+    <p>In jurisdictions where limitation of liability for consequential or incidental damages is not permitted, the Licensor's liability shall be limited to the maximum extent permitted by law. In all cases, the Licensor's total aggregate liability to you shall not exceed the amount you paid for the Application in the twelve (12) months preceding the event giving rise to the claim.</p>
+  </div>
+
+  <!-- 10 -->
+  <div class="eula-section" id="s10">
+    <h2><span class="sec-num">10</span> Indemnification</h2>
+    <p>You agree to indemnify, defend, and hold harmless the Licensor and its officers, directors, employees, agents, and successors from and against any claims, liabilities, damages, losses, costs, or expenses (including reasonable legal fees) arising out of or in connection with:</p>
+    <ul>
+      <li>Your use of the Application in violation of this Agreement</li>
+      <li>Your violation of any applicable law or third-party rights</li>
+      <li>Any data you submit to or through the Application</li>
+      <li>Any dispute between you and a third party in connection with your use of the Application</li>
+    </ul>
+  </div>
+
+  <!-- 11 -->
+  <div class="eula-section" id="s11">
+    <h2><span class="sec-num">11</span> Updates and Changes</h2>
+    <p>The Licensor may, at its sole discretion, release updates, patches, or new versions of the Application. Such updates may be required to continue using the Application and may add, modify, or remove features. You agree that the Licensor has no obligation to provide any particular update or to maintain any specific feature.</p>
+    <p>The Licensor reserves the right to modify this Agreement at any time. When changes are made, the effective date at the top of this page will be updated. Your continued use of the Application after any modification constitutes your acceptance of the revised Agreement. If you do not agree to the revised Agreement, you must stop using the Application.</p>
+  </div>
+
+  <!-- 12 -->
+  <div class="eula-section" id="s12">
+    <h2><span class="sec-num">12</span> Termination</h2>
+    <p>This Agreement is effective until terminated. Your rights under this Agreement will terminate automatically and without notice if you fail to comply with any term hereof. Upon termination:</p>
+    <ul>
+      <li>All rights and licenses granted to you under this Agreement immediately cease</li>
+      <li>You must cease all use of the Application and destroy all copies in your possession</li>
+      <li>Sections 3 (Intellectual Property), 8 (Disclaimer of Warranties), 9 (Limitation of Liability), 10 (Indemnification), and 13 (Governing Law) shall survive termination</li>
+    </ul>
+    <p>The Licensor may also terminate or suspend your access to the Application at any time, for any reason, with or without notice.</p>
+  </div>
+
+  <!-- 13 -->
+  <div class="eula-section" id="s13">
+    <h2><span class="sec-num">13</span> Governing Law</h2>
+    <p>This Agreement shall be governed by and construed in accordance with applicable law, without regard to conflict of law principles. Any dispute arising out of or in connection with this Agreement that cannot be resolved informally shall be submitted to the exclusive jurisdiction of the competent courts in the Licensor's jurisdiction.</p>
+    <p>If any provision of this Agreement is found to be unenforceable or invalid, that provision shall be limited or eliminated to the minimum extent necessary so that this Agreement shall otherwise remain in full force and effect.</p>
+    <p>This Agreement constitutes the entire agreement between you and the Licensor with respect to the Application and supersedes all prior or contemporaneous understandings, agreements, representations, and warranties, whether written or oral.</p>
+  </div>
+
+  <!-- 14 -->
+  <div class="eula-section" id="s14">
+    <h2><span class="sec-num">14</span> Contact Information</h2>
+    <p>If you have any questions about this Agreement, wish to report a violation, or need to contact the Licensor for any legal matter related to the Application, please reach out via the official channels listed on the Application's store page or through the GitHub repository associated with this project.</p>
+    <p>For privacy-related requests, please contact the Licensor via the official channels listed on the Application's store page.</p>
+  </div>
+
+</div><!-- /content-wrap -->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img class="logo-gem" src="assets/img/penny_icon.png" alt="Penny logo" style="width:28px;height:28px;" />
+    <span>© 2026 Penny · All Rights Reserved</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="eula.html">EULA</a>
+  </div>
+</footer>
+
+</body>
+</html>
