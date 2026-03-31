@@ -392,7 +392,12 @@
     <div class="feat-card">
       <div class="feat-icon">🤝</div>
       <h3>Expense Splitting</h3>
-      <p>Create split groups, divide expenses equally or with custom percentages, track balances, and settle debts.</p>
+      <p>Create split groups, divide expenses equally or with custom percentages, track balances, and settle debts. Auth-gated with contact-picker invites.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">👥</div>
+      <h3>Contacts & Associations</h3>
+      <p>Search users by share ID (PENNY-XXXX), send association requests with accept/reject/block flow, in-app notification banners with unique sound effects via Supabase Realtime.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">📷</div>
@@ -427,7 +432,7 @@
     <div class="feat-card">
       <div class="feat-icon">📄</div>
       <h3>Export & Reports</h3>
-      <p>Generate PDF financial reports, export CSV/Excel, and take full JSON backups of all 18 tables.</p>
+      <p>Generate PDF financial reports, export CSV/Excel, and take full JSON backups of all 19 tables.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">🏦</div>
@@ -438,6 +443,11 @@
       <div class="feat-icon">🔗</div>
       <h3>Supabase Cloud Sync</h3>
       <p>Optional Supabase backend with real-time sync, Edge Functions, and PostgreSQL — replacing 10 Spring Boot microservices with zero infrastructure.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔔</div>
+      <h3>In-App Notifications</h3>
+      <p>Animated slide-down banners for contact requests, group invites, and workspace activity. Unique sound effects per notification type, powered by Supabase Realtime.</p>
     </div>
   </div>
 </section>
@@ -487,12 +497,12 @@
           </li>
           <li><span class="icon icon-lock">✦</span>
             <span>
-              <strong>Collaborative workspaces</strong> — create shared workspaces with role-based access (Owner, Admin, Member, Viewer)
+              <strong>Collaborative workspaces</strong> — create shared workspaces with role-based access (Owner, Admin, Member, Viewer) and ownership transfer
             </span>
           </li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Shared expenses</strong> — log and settle expenses across workspace members with full audit trail</span></li>
+          <li><span class="icon icon-lock">✦</span><span><strong>Shared expenses</strong> — log and settle expenses across workspace members with full audit trail and permission enforcement</span></li>
           <li><span class="icon icon-lock">✦</span><span><strong>Workspace budgets</strong> — team-scoped budget tracking separate from personal budgets</span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Email workspace invites</strong> — invite collaborators by email with role assignment</span></li>
+          <li><span class="icon icon-lock">✦</span><span><strong>Contact-picker invites</strong> — invite accepted contacts to workspaces with role assignment (replaces email invites)</span></li>
           <li><span class="icon icon-lock">✦</span><span><strong>Real-time sync</strong> — Supabase Realtime-powered live updates across workspace members</span></li>
           <li><span class="icon icon-lock">✦</span><span><strong>Push notifications</strong> — alerts for shared expenses, settlements, and workspace activity <span class="coming-soon-chip">Coming soon</span></span></li>
           <li><span class="icon icon-lock">✦</span><span><strong>Scheduled reports</strong> — automated email delivery of financial summaries on your chosen frequency <span class="coming-soon-chip">Coming soon</span></span></li>
@@ -530,6 +540,7 @@
       <div class="table-row"><span>Group Expense Splitting</span><span class="badge badge-yes">Always on</span></div>
       <div class="table-row"><span>CSV / Excel / JSON Export</span><span class="badge badge-yes">Always on</span></div>
       <div class="table-row"><span>Apple Wallet Import</span><span class="badge badge-yes">Always on</span></div>
+      <div class="table-row"><span>User Contacts &amp; Associations</span><span class="badge badge-opt">Optional</span></div>
       <div class="table-row"><span>Google Drive Sync</span><span class="badge badge-opt">Optional</span></div>
       <div class="table-row"><span>Supabase Cloud Sync</span><span class="badge badge-opt">Optional</span></div>
       <div class="table-row"><span>Push Notifications</span><span class="badge badge-opt">Optional</span></div>
@@ -598,12 +609,13 @@
       <tr><td>Analytics &amp; PDF reports</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
       <tr><td>CSV / Excel / JSON export</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
       <tr><td>Google Drive sync</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
-      <tr><td>Sharing &amp; Groups</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Sharing &amp; Groups (auth-gated)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Contacts &amp; Associations</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
       <tr><td>Receipt Scanning (ML Kit)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
       <tr><td>Camera QR scanner</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
       <tr><td>QR import via paste-JSON</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
       <tr><td>Transaction sharing (deep links)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-part">Partial</td></tr>
-      <tr><td>Notification sounds &amp; haptics</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
+      <tr><td>Notification sounds &amp; haptics (9 types)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
       <tr><td>Apple FinanceKit import</td><td class="dot-no">—</td><td class="dot-yes">✓ iOS 17.4+</td><td class="dot-no">—</td></tr>
       <tr><td>Multi-lingual (EN / EL / ES / FR)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
     </tbody>
@@ -617,6 +629,7 @@
   <p class="section-sub">Penny is proprietary software. All rights reserved.</p>
   <div class="hero-btns" style="margin-top:2rem;">
     <a class="btn-ghost" href="eula.html">Terms &amp; EULA</a>
+    <a class="btn-ghost" href="privacy.html">Privacy Policy</a>
   </div>
 </section>
 
@@ -628,6 +641,7 @@
   </div>
   <div class="footer-links">
     <a href="eula.html">Terms &amp; EULA</a>
+    <a href="privacy.html">Privacy</a>
   </div>
 </footer>
 
