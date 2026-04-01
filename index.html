@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Penny — Offline-First Personal Finance</title>
-  <meta name="description" content="Track transactions, manage budgets, set savings goals, and split expenses — all without an internet connection. Privacy-first." />
+  <meta name="description" content="Track transactions, manage budgets, set savings goals, and split expenses — all without an internet connection. Privacy-first personal finance." />
   <meta property="og:title" content="Penny — Offline-First Personal Finance" />
   <meta property="og:description" content="Your financial life, on your terms. No account required." />
   <meta property="og:type" content="website" />
@@ -292,14 +292,39 @@
     .dot-no   { color: var(--muted); }
     .dot-part { color: #f59e0b; }
 
-    /* ── OPEN SOURCE CTA ── */
-    .oss-section {
-      background: linear-gradient(135deg, rgba(108,92,231,.2) 0%, rgba(168,85,247,.12) 100%);
+    /* ── ROADMAP ── */
+    .roadmap-section {
+      background: var(--bg);
       border-top: 1px solid var(--border);
-      text-align: center;
     }
-    .oss-section .section-title { max-width: 640px; margin: 0 auto .75rem; }
-    .oss-section .section-sub { margin: 0 auto 2.2rem; }
+    .roadmap-inner { max-width: 1100px; margin: 0 auto; }
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-top: 3rem;
+    }
+    .roadmap-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .roadmap-card h4 {
+      font-size: .875rem; font-weight: 700; margin-bottom: .75rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .roadmap-card ul {
+      list-style: none; display: flex; flex-direction: column; gap: .45rem;
+    }
+    .roadmap-card ul li {
+      font-size: .82rem; color: var(--muted);
+      display: flex; align-items: flex-start; gap: .5rem;
+    }
+    .roadmap-card ul li::before {
+      content: '·'; color: var(--violet); font-weight: 700;
+      flex-shrink: 0; margin-top: 1px;
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -321,7 +346,7 @@
 <!-- WIP BANNER -->
 <div class="wip-banner">
   <span class="wip-dot"></span>
-  Work in progress &nbsp;·&nbsp; Testing phase starting soon
+  Currently in private testing &nbsp;·&nbsp; App Store &amp; Google Play launch coming soon
 </div>
 
 <!-- NAV -->
@@ -333,9 +358,10 @@
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
     <li><a href="#premium">Premium</a></li>
-    <li><a href="#offline">Offline-First</a></li>
+    <li><a href="#offline">Privacy</a></li>
     <li><a href="#tech">Tech Stack</a></li>
     <li><a href="#platforms">Platforms</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
   </ul>
 </nav>
 
@@ -372,82 +398,92 @@
     <div class="feat-card">
       <div class="feat-icon">💸</div>
       <h3>Transaction Tracking</h3>
-      <p>Record income and expenses with categories, notes, multi-currency support, receipt scanning, and full audit trail.</p>
+      <p>Record income and expenses with categories, notes, multi-currency support, receipt scanning, reference numbers, and a full soft-delete audit trail.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">📊</div>
       <h3>Budgets</h3>
-      <p>Create period-based budgets with per-category limits. Track actual vs. limit with progress bars and overspent alerts.</p>
+      <p>Period-based budgets with per-category limits and live spending progress. Animated progress bars pulse amber at 80% and red when overspent.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">🎯</div>
       <h3>Savings Goals</h3>
-      <p>Set targets with deadlines, track contributions, and see monthly savings required to hit your goal on time.</p>
+      <p>Set targets with deadlines, track contributions, and see the monthly savings amount required to hit your goal on time.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">📈</div>
       <h3>Advanced Analytics</h3>
-      <p>Cash flow analysis, budget variance reports, 3-month trend projections, and bar/line/pie charts — all offline.</p>
+      <p>Spending forecasts (Holt-Winters + BG/NBD), cash flow charts, budget variance bars, category drill-downs, and what-if scenario sliders — all offline.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">🤝</div>
       <h3>Expense Splitting</h3>
-      <p>Create split groups, divide expenses equally or with custom percentages, track balances, and settle debts. Auth-gated with contact-picker invites.</p>
+      <p>Create split groups, divide expenses equally or with custom percentages, track pairwise balances, and settle debts with a QR flow.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">👥</div>
-      <h3>Contacts & Associations</h3>
-      <p>Search users by share ID (PENNY-XXXX), send association requests with accept/reject/block flow, in-app notification banners with unique sound effects via Supabase Realtime.</p>
+      <h3>Contacts &amp; Associations</h3>
+      <p>Search users by share ID (PENNY-XXXX), send/accept/reject/block requests. Real-time in-app notification banners via Supabase Realtime.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">📷</div>
       <h3>Receipt Scanning</h3>
-      <p>On-device ML Kit OCR extracts merchant, total, tax, date, and line items. Optional self-hosted PaddleOCR/docTR backend.</p>
+      <p>On-device ML Kit OCR extracts merchant, total, tax, date, invoice number, currency, and line items with per-field confidence scores. Auto-categorizes using your rules. Receipt icon shown on all transaction tiles.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">🌍</div>
       <h3>Multi-Currency</h3>
-      <p>15 currencies with live EC InforEuro exchange rates, offline gzip cache, and automatic EUR-based conversion.</p>
+      <p>15+ currencies with live EC InforEuro exchange rates, offline gzip cache, and automatic base-currency conversion. Each transaction displays in its own currency.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">📲</div>
       <h3>QR Code Sharing</h3>
-      <p>Share transactions via ECDSA P-256 signed QR codes with 24-hour expiry. Works entirely offline, no backend needed.</p>
+      <p>Share transactions via ECDSA P-256 signed QR codes with 24-hour expiry. Works entirely offline — no backend required.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">☁️</div>
-      <h3>Cloud Sync</h3>
-      <p>Optional Google Drive backup and restore. Auto-sync when connectivity resumes, with conflict count reporting.</p>
+      <h3>Cloud Sync &amp; Backup</h3>
+      <p>Optional Supabase sync with delta push/pull, field-level change logging, and per-table incremental timestamps. Google Drive full JSON backup also available.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔐</div>
+      <h3>End-to-End Encryption</h3>
+      <p>AES-256-GCM encryption for all cloud-synced transaction data. Your key never leaves your device — not even Penny can read your data on the server.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">♿</div>
+      <h3>Accessibility</h3>
+      <p>5 text size presets, high-contrast theme (auto-activates from system setting), in-app reduce motion toggle, and colorblind-friendly directional icons on all amounts.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">🔁</div>
       <h3>Recurring Transactions</h3>
-      <p>Configurable templates with daily/weekly/monthly/yearly recurrence. Backend scheduler runs at 2 AM.</p>
+      <p>Configurable templates with daily, weekly, monthly, and yearly recurrence. Auto-generated on app launch with smart scheduling.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">🤖</div>
       <h3>AI Categorization</h3>
-      <p>Rule-based auto-categorization with EXACT/CONTAINS/REGEX matching, 15 system defaults, and self-learning from your choices.</p>
+      <p>Rule-based auto-categorization with EXACT, CONTAINS, STARTS_WITH, and REGEX matching. Self-learns from your choices with up to 500 learned rules.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">📄</div>
-      <h3>Export & Reports</h3>
-      <p>Generate PDF financial reports, export CSV/Excel, and take full JSON backups of all 19 tables.</p>
+      <h3>Export &amp; Reports</h3>
+      <p>PDF financial reports, CSV/Excel exports, and full JSON backups of all 23 tables. Import CSV, Excel, and JSON with deduplication.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">🏦</div>
       <h3>Apple Wallet Import</h3>
-      <p>Import transactions directly from Apple Wallet via FinanceKit (iOS 17.4+). MCC auto-categorization, duplicate detection, and merge/overwrite policies.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🔗</div>
-      <h3>Supabase Cloud Sync</h3>
-      <p>Optional Supabase backend with real-time sync, Edge Functions, and PostgreSQL — replacing 10 Spring Boot microservices with zero infrastructure.</p>
+      <p>Import transactions from Apple Wallet via FinanceKit (iOS 17.4+). MCC auto-categorization, duplicate detection, and merge/overwrite policies.</p>
     </div>
     <div class="feat-card">
       <div class="feat-icon">🔔</div>
       <h3>In-App Notifications</h3>
-      <p>Animated slide-down banners for contact requests, group invites, and workspace activity. Unique sound effects per notification type, powered by Supabase Realtime.</p>
+      <p>Animated slide-down banners for contact requests, group invites, workspace activity, and budget alerts. Unique sound per notification type via Supabase Realtime.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔒</div>
+      <h3>Biometric Lock</h3>
+      <p>Face ID, Touch ID, and PIN fallback. Biometric lock on launch or on return from background. Tokens stored in FlutterSecureStorage, never SharedPreferences.</p>
     </div>
   </div>
 </section>
@@ -455,9 +491,9 @@
 <!-- PREMIUM -->
 <section id="premium" class="premium-section">
   <div class="premium-inner">
-    <p class="section-label center">Upgrade</p>
+    <p class="section-label center">Plans</p>
     <h2 class="section-title center">Free forever. More when you need it.</h2>
-    <p class="section-sub center">Every core feature is free with no account required. Premium unlocks powerful collaboration and deep analytics for users who want more.</p>
+    <p class="section-sub center">Every core feature is free with no account required. Premium unlocks powerful collaboration, deep analytics, and enhanced privacy for users who want more.</p>
 
     <div class="tier-grid">
 
@@ -467,19 +503,20 @@
         <h3>Always included</h3>
         <p class="tier-price">No account · No subscription · <strong>Forever free</strong></p>
         <ul class="tier-list">
-          <li><span class="icon icon-yes">✓</span><span><strong>Transaction tracking</strong> — unlimited income &amp; expense records</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Budgets</strong> — period-based budgets with per-category limits</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Savings goals</strong> — targets, contributions, and progress tracking</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Basic analytics</strong> — bar, line, and pie charts for the current period</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Multi-currency</strong> — 15 currencies with live EC InforEuro rates</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Receipt scanning</strong> — on-device ML Kit OCR, 13-field extraction</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>QR &amp; deep-link sharing</strong> — ECDSA-signed transaction sharing</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Group expense splitting</strong> — consent-based invite system, settle debts</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Export &amp; reports</strong> — CSV, Excel, PDF, and full JSON backup</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>Transaction tracking</strong> — unlimited income &amp; expense records with soft-delete</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>Budgets</strong> — live spending progress with animated progress bars</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>Savings goals</strong> — targets, contributions, and monthly calculator</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>Basic analytics</strong> — bar, line, and pie charts with date-range selector</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>Multi-currency</strong> — 15+ currencies with live EC InforEuro rates</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>Receipt scanning</strong> — on-device ML Kit OCR, 13-field extraction, auto-categorization</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>QR &amp; deep-link sharing</strong> — ECDSA-signed transaction sharing, offline</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>Group expense splitting</strong> — consent-based invites, settle debts</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>Export &amp; reports</strong> — CSV, Excel, PDF, and full JSON backup (23 tables)</span></li>
           <li><span class="icon icon-yes">✓</span><span><strong>Google Drive sync</strong> — optional cloud backup &amp; restore</span></li>
           <li><span class="icon icon-yes">✓</span><span><strong>AI categorization</strong> — rule-based auto-tagging with self-learning</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Apple Wallet import</strong> — FinanceKit integration on iOS 17.4+ with smart categorization</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Localization</strong> — English, Greek, Spanish, French</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>Apple Wallet import</strong> — FinanceKit on iOS 17.4+ with smart categorization</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>Accessibility</strong> — text size, high contrast, reduce motion, colorblind icons</span></li>
+          <li><span class="icon icon-yes">✓</span><span><strong>4 languages</strong> — English, Greek, Spanish, French</span></li>
         </ul>
       </div>
 
@@ -489,23 +526,15 @@
         <h3>Everything in Free, plus:</h3>
         <p class="tier-price"><strong>$4.99 / month</strong> &nbsp;·&nbsp; or <strong>$39.99 / year</strong> &nbsp;·&nbsp; Cancel anytime</p>
         <ul class="tier-list">
-          <li><span class="icon icon-lock">✦</span><span><strong>Ad-free experience</strong> — banner ads removed across the entire app</span></li>
-          <li><span class="icon icon-lock">✦</span>
-            <span>
-              <strong>Advanced analytics</strong> — cash flow running balance chart, budget variance bars, and 3-month trend projection with dashed forecast lines
-            </span>
-          </li>
-          <li><span class="icon icon-lock">✦</span>
-            <span>
-              <strong>Collaborative workspaces</strong> — create shared workspaces with role-based access (Owner, Admin, Member, Viewer) and ownership transfer
-            </span>
-          </li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Shared expenses</strong> — log and settle expenses across workspace members with full audit trail and permission enforcement</span></li>
+          <li><span class="icon icon-lock">✦</span><span><strong>End-to-end encryption</strong> — AES-256-GCM on all cloud-synced data; your key, your data</span></li>
+          <li><span class="icon icon-lock">✦</span><span><strong>Advanced analytics</strong> — spending forecasts (Holt-Winters), confidence bands, category drill-downs, what-if sliders</span></li>
+          <li><span class="icon icon-lock">✦</span><span><strong>Collaborative workspaces</strong> — shared workspaces with Owner/Admin/Member/Viewer roles and ownership transfer</span></li>
+          <li><span class="icon icon-lock">✦</span><span><strong>Shared expenses</strong> — log and settle expenses across workspace members with full audit trail</span></li>
           <li><span class="icon icon-lock">✦</span><span><strong>Workspace budgets</strong> — team-scoped budget tracking separate from personal budgets</span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Contact-picker invites</strong> — invite accepted contacts to workspaces with role assignment (replaces email invites)</span></li>
+          <li><span class="icon icon-lock">✦</span><span><strong>Enhanced receipt scanning</strong> — cloud AI extraction for higher accuracy and multi-language receipts <span class="coming-soon-chip">Coming soon</span></span></li>
           <li><span class="icon icon-lock">✦</span><span><strong>Real-time sync</strong> — Supabase Realtime-powered live updates across workspace members</span></li>
           <li><span class="icon icon-lock">✦</span><span><strong>Push notifications</strong> — alerts for shared expenses, settlements, and workspace activity <span class="coming-soon-chip">Coming soon</span></span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Scheduled reports</strong> — automated email delivery of financial summaries on your chosen frequency <span class="coming-soon-chip">Coming soon</span></span></li>
+          <li><span class="icon icon-lock">✦</span><span><strong>Scheduled reports</strong> — automated email delivery of financial summaries <span class="coming-soon-chip">Coming soon</span></span></li>
         </ul>
 
         <div class="premium-divider"><span>Pricing shown is indicative — subject to change before launch</span></div>
@@ -515,7 +544,7 @@
   </div>
 </section>
 
-<!-- OFFLINE FIRST -->
+<!-- PRIVACY / OFFLINE FIRST -->
 <section id="offline" class="offline-section">
   <div class="offline-inner">
     <div>
@@ -526,9 +555,11 @@
         <li><span class="check">✓</span><span>No account required — all core features work on first launch</span></li>
         <li><span class="check">✓</span><span>SQLite database stored locally via Drift (native &amp; WASM)</span></li>
         <li><span class="check">✓</span><span>ECDSA P-256 private keys in FlutterSecureStorage, encrypted at rest</span></li>
+        <li><span class="check">✓</span><span>End-to-end encryption for cloud sync — AES-256-GCM, key never leaves device</span></li>
         <li><span class="check">✓</span><span>Backend API calls guarded — release builds never call localhost</span></li>
         <li><span class="check">✓</span><span>Offline banner + connectivity guard on all network operations</span></li>
-        <li><span class="check">✓</span><span>Receipt OCR runs on-device by default (ML Kit, no data sent)</span></li>
+        <li><span class="check">✓</span><span>Receipt OCR runs on-device by default — no image data ever sent</span></li>
+        <li><span class="check">✓</span><span>Complete data wipe on request — device and server, under your control</span></li>
       </ul>
     </div>
     <div class="offline-card">
@@ -540,11 +571,13 @@
       <div class="table-row"><span>Group Expense Splitting</span><span class="badge badge-yes">Always on</span></div>
       <div class="table-row"><span>CSV / Excel / JSON Export</span><span class="badge badge-yes">Always on</span></div>
       <div class="table-row"><span>Apple Wallet Import</span><span class="badge badge-yes">Always on</span></div>
+      <div class="table-row"><span>Accessibility Settings</span><span class="badge badge-yes">Always on</span></div>
+      <div class="table-row"><span>End-to-End Encryption</span><span class="badge badge-opt">Premium</span></div>
       <div class="table-row"><span>User Contacts &amp; Associations</span><span class="badge badge-opt">Optional</span></div>
       <div class="table-row"><span>Google Drive Sync</span><span class="badge badge-opt">Optional</span></div>
       <div class="table-row"><span>Supabase Cloud Sync</span><span class="badge badge-opt">Optional</span></div>
       <div class="table-row"><span>Push Notifications</span><span class="badge badge-opt">Optional</span></div>
-      <div class="table-row"><span>Backend OCR (PaddleOCR)</span><span class="badge badge-opt">Optional</span></div>
+      <div class="table-row"><span>Enhanced OCR (Cloud AI)</span><span class="badge badge-opt">Premium</span></div>
     </div>
   </div>
 </section>
@@ -564,6 +597,7 @@
         <span class="tag">Riverpod</span>
         <span class="tag">go_router</span>
         <span class="tag">ML Kit OCR</span>
+        <span class="tag">AES-256-GCM</span>
         <span class="tag">ECDSA P-256</span>
         <span class="tag">fl_chart</span>
         <span class="tag">Google Drive API</span>
@@ -572,6 +606,7 @@
         <span class="tag">in_app_purchase</span>
         <span class="tag">Apple FinanceKit</span>
         <span class="tag">supabase_flutter</span>
+        <span class="tag">FlutterSecureStorage</span>
       </div>
     </div>
     <div class="stack-col">
@@ -585,6 +620,8 @@
         <span class="tag">Realtime</span>
         <span class="tag">pg_cron</span>
         <span class="tag">DB Functions</span>
+        <span class="tag">Apple Sign-In</span>
+        <span class="tag">Google Sign-In</span>
       </div>
     </div>
   </div>
@@ -611,25 +648,95 @@
       <tr><td>Google Drive sync</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
       <tr><td>Sharing &amp; Groups (auth-gated)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
       <tr><td>Contacts &amp; Associations</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>End-to-end encryption (cloud sync)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Accessibility settings</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
       <tr><td>Receipt Scanning (ML Kit)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
       <tr><td>Camera QR scanner</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
       <tr><td>QR import via paste-JSON</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
       <tr><td>Transaction sharing (deep links)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-part">Partial</td></tr>
-      <tr><td>Notification sounds &amp; haptics (9 types)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
-      <tr><td>Apple FinanceKit import</td><td class="dot-no">—</td><td class="dot-yes">✓ iOS 17.4+</td><td class="dot-no">—</td></tr>
+      <tr><td>Notification sounds &amp; haptics</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
+      <tr><td>iOS Home Screen Widget</td><td class="dot-no">—</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
+      <tr><td>Apple FinanceKit import</td><td class="dot-no">—</td><td class="dot-yes">iOS 17.4+</td><td class="dot-no">—</td></tr>
       <tr><td>Multi-lingual (EN / EL / ES / FR)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
     </tbody>
   </table>
 </section>
 
-<!-- OSS CTA -->
-<section class="oss-section">
-  <p class="section-label center">Open Source</p>
-  <h2 class="section-title">Built in the open, free forever.</h2>
-  <p class="section-sub">Penny is proprietary software. All rights reserved.</p>
-  <div class="hero-btns" style="margin-top:2rem;">
-    <a class="btn-ghost" href="eula.html">Terms &amp; EULA</a>
-    <a class="btn-ghost" href="privacy.html">Privacy Policy</a>
+<!-- ROADMAP -->
+<section id="roadmap" class="roadmap-section">
+  <div class="roadmap-inner">
+    <p class="section-label center">What's coming</p>
+    <h2 class="section-title center">Roadmap</h2>
+    <p class="section-sub center">Features actively in development or planned for upcoming releases.</p>
+    <div class="roadmap-grid">
+
+      <div class="roadmap-card">
+        <h4>📷 Receipt Scanning</h4>
+        <ul>
+          <li>Scan receipts directly from Quick Add sheet</li>
+          <li>Edit individual line items in the review screen</li>
+          <li>Duplicate receipt detection by invoice number</li>
+          <li>Cloud AI extraction (higher accuracy, multi-language)</li>
+          <li>Batch import multiple receipts from gallery</li>
+          <li>Expense report PDF with attached receipt images</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card">
+        <h4>♿ Accessibility</h4>
+        <ul>
+          <li>Text size presets (XS → XL) applied app-wide</li>
+          <li>High contrast mode — auto-activates from system</li>
+          <li>In-app reduce motion toggle</li>
+          <li>Full screen reader (VoiceOver / TalkBack) pass</li>
+          <li>Tooltip labels on all icon-only buttons</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card">
+        <h4>🗑️ Data Management</h4>
+        <ul>
+          <li>Delete All Data — wipe device and/or Supabase server</li>
+          <li>Selective sync conflict resolution UI</li>
+          <li>SyncChangeLogs viewer for power users</li>
+          <li>Splitwise CSV import with personal share calculation</li>
+          <li>Revolut, Monzo, and YNAB import support</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card">
+        <h4>📊 Analytics</h4>
+        <ul>
+          <li>Budget alerts when approaching or over limit</li>
+          <li>Multi-period budget history comparison</li>
+          <li>Export analytics charts to PDF</li>
+          <li>Spending heatmap by day of week / time</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card">
+        <h4>☁️ Sync &amp; Backup</h4>
+        <ul>
+          <li>Savings goal contributions sync to Supabase</li>
+          <li>Incremental pull for all table types</li>
+          <li>Scheduled automated backups</li>
+          <li>Sync status indicator on transaction tiles</li>
+        </ul>
+      </div>
+
+      <div class="roadmap-card">
+        <h4>📱 Platform</h4>
+        <ul>
+          <li>Android Home Screen Widget (Glance API)</li>
+          <li>macOS desktop build with adaptive layout</li>
+          <li>Siri Shortcuts &amp; App Intents</li>
+          <li>Web camera QR scanning</li>
+          <li>FinanceKit re-integration (iOS 17.4+)</li>
+          <li>Push notifications for budgets and shared expenses</li>
+        </ul>
+      </div>
+
+    </div>
   </div>
 </section>
 
