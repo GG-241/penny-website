@@ -11,21 +11,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --violet: #6C5CE7;
-      --violet-d: #5849c4;
-      --green: #10B981;
-      --red: #EF4444;
-      --bg: #0f0e17;
-      --bg2: #16151f;
-      --text: #f0eeff;
-      --muted: #9b97b8;
-      --border: rgba(108,92,231,.18);
-      --radius: 14px;
-    }
 
     body {
       font-family: 'Inter', system-ui, sans-serif;
@@ -40,7 +28,7 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 clamp(1rem, 5vw, 3rem);
       height: 64px;
-      background: rgba(15,14,23,.92);
+      background: var(--nav-bg);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
@@ -56,7 +44,7 @@
     .page-hero {
       padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 6vw, 3rem) 2rem;
       text-align: center;
-      background: radial-gradient(ellipse 70% 50% at 50% -5%, rgba(108,92,231,.28) 0%, transparent 65%);
+      background: var(--hero-glow);
       border-bottom: 1px solid var(--border);
     }
     .page-hero .label {
@@ -70,7 +58,7 @@
     .page-hero p { color: var(--muted); font-size: .95rem; max-width: 520px; margin: 0 auto; }
     .effective-badge {
       display: inline-block; margin-top: 1.25rem;
-      background: var(--bg2); border: 1px solid var(--border);
+      background: var(--surface); border: 1px solid var(--border);
       border-radius: 100px; padding: .35rem 1rem;
       font-size: .8rem; color: var(--muted); font-weight: 500;
     }
@@ -81,7 +69,7 @@
     }
 
     .toc {
-      background: var(--bg2); border: 1px solid var(--border);
+      background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 1.5rem 1.75rem;
       margin-bottom: 3rem;
     }
@@ -102,7 +90,7 @@
     }
     .sec-num {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 26px; height: 26px; background: rgba(108,92,231,.2);
+      width: 26px; height: 26px; background: rgb(var(--accent-primary-rgb) / .18);
       color: var(--violet); border-radius: 6px;
       font-size: .75rem; font-weight: 700; flex-shrink: 0;
     }
@@ -118,8 +106,8 @@
     .callout {
       border-radius: 10px; padding: 1rem 1.25rem;
       margin: 1.25rem 0; font-size: .9rem;
-      background: rgba(108,92,231,.1); border: 1px solid rgba(108,92,231,.3);
-      color: #c4b5fd;
+      background: var(--callout-info-bg); border: 1px solid var(--callout-info-border);
+      color: var(--callout-info-text);
     }
     .callout strong { color: inherit; font-weight: 700; }
 
@@ -130,7 +118,7 @@
     .data-table th {
       font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
       color: var(--muted); padding: .6rem .75rem; text-align: left;
-      border-bottom: 1px solid var(--border); background: var(--bg2);
+      border-bottom: 1px solid var(--border); background: var(--surface);
     }
     .data-table td {
       padding: .6rem .75rem; border-bottom: 1px solid var(--border); color: var(--muted);
@@ -138,7 +126,7 @@
     .data-table tr:last-child td { border-bottom: none; }
 
     footer {
-      background: var(--bg2); border-top: 1px solid var(--border);
+      background: var(--surface); border-top: 1px solid var(--border);
       padding: 2rem clamp(1rem, 6vw, 3rem);
       display: flex; align-items: center; justify-content: space-between;
       flex-wrap: wrap; gap: 1rem;
