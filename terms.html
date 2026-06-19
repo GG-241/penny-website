@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service - Penny</title>
+  <meta name="description" content="Terms of Service for Penny personal finance application." />
+  <meta property="og:image" content="assets/img/penny_icon.png" />
+  <link rel="icon" type="image/png" href="assets/img/penny_icon.png" />
+  <link rel="apple-touch-icon" href="assets/img/penny_icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --violet: #6C5CE7;
+      --bg: #0f0e17;
+      --bg2: #16151f;
+      --text: #f0eeff;
+      --muted: #9b97b8;
+      --border: rgba(108,92,231,.18);
+      --radius: 14px;
+    }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1rem, 5vw, 3rem);
+      height: 64px;
+      background: rgba(15,14,23,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-gem { width: 34px; height: 34px; border-radius: 8px; object-fit: contain; }
+    .nav-logo span { font-weight: 700; font-size: 1.15rem; color: var(--text); }
+    .nav-back {
+      color: var(--muted); text-decoration: none; font-size: .875rem;
+      font-weight: 500; display: flex; align-items: center; gap: .4rem;
+    }
+    .nav-back:hover { color: var(--text); }
+    .page-hero {
+      padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 6vw, 3rem) 2rem;
+      text-align: center;
+      background: radial-gradient(ellipse 70% 50% at 50% -5%, rgba(108,92,231,.28) 0%, transparent 65%);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero .label {
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--violet); margin-bottom: .75rem;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+      letter-spacing: -.03em; margin-bottom: .75rem;
+    }
+    .page-hero p { color: var(--muted); font-size: .95rem; max-width: 520px; margin: 0 auto; }
+    .effective-badge {
+      display: inline-block; margin-top: 1.25rem;
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 100px; padding: .35rem 1rem;
+      font-size: .8rem; color: var(--muted); font-weight: 500;
+    }
+    .content-wrap {
+      max-width: 860px; margin: 0 auto;
+      padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+    }
+    .toc {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem 1.75rem;
+      margin-bottom: 3rem;
+    }
+    .toc h2 {
+      font-size: .78rem; font-weight: 600; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+    }
+    .toc ol { padding-left: 1.25rem; display: flex; flex-direction: column; gap: .4rem; }
+    .toc li { font-size: .875rem; }
+    .toc a { color: var(--violet); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+    .policy-section { margin-bottom: 3rem; scroll-margin-top: 80px; }
+    .policy-section h2 {
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;
+      padding-bottom: .6rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .sec-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; background: rgba(108,92,231,.2);
+      color: var(--violet); border-radius: 6px;
+      font-size: .75rem; font-weight: 700; flex-shrink: 0;
+    }
+    .policy-section p, .policy-section li {
+      color: var(--muted); font-size: .925rem; margin-bottom: .85rem;
+    }
+    .policy-section ul {
+      padding-left: 1.5rem; margin-bottom: .85rem;
+      display: flex; flex-direction: column; gap: .45rem;
+    }
+    .policy-section strong { color: var(--text); font-weight: 600; }
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 2rem clamp(1rem, 6vw, 3rem);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .footer-logo span { color: var(--muted); font-size: .875rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--muted); font-size: .85rem; text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img class="logo-gem" src="assets/img/penny_icon.png" alt="Penny logo" />
+    <span>Penny</span>
+  </a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+
+<div class="page-hero">
+  <p class="label">Legal</p>
+  <h1>Terms of Service</h1>
+  <p>Rules for using Penny, including subscriptions, cancellation, account deletion, and retention.</p>
+  <span class="effective-badge">Effective date: 19 June 2026</span>
+</div>
+
+<div class="content-wrap">
+  <div class="toc">
+    <h2>Table of Contents</h2>
+    <ol>
+      <li><a href="#s1">Acceptance</a></li>
+      <li><a href="#s2">No Financial Advice</a></li>
+      <li><a href="#s3">Accounts</a></li>
+      <li><a href="#s4">Subscriptions</a></li>
+      <li><a href="#s5">Cancellation</a></li>
+      <li><a href="#s6">Account Deletion</a></li>
+      <li><a href="#s7">Retention</a></li>
+      <li><a href="#s8">Acceptable Use</a></li>
+      <li><a href="#s9">Changes</a></li>
+      <li><a href="#s10">Disclaimers</a></li>
+      <li><a href="#s11">Liability</a></li>
+      <li><a href="#s12">Privacy</a></li>
+      <li><a href="#s13">Contact</a></li>
+    </ol>
+  </div>
+
+  <div class="policy-section" id="s1">
+    <h2><span class="sec-num">1</span> Acceptance</h2>
+    <p>By downloading, accessing, or using Penny, you agree to these Terms. If you do not agree, do not use the app.</p>
+  </div>
+
+  <div class="policy-section" id="s2">
+    <h2><span class="sec-num">2</span>No Financial Advice</h2>
+    <p>Penny is a personal finance tool. It is not financial, tax, investment, legal, or accounting advice. You are responsible for your own financial decisions.</p>
+  </div>
+
+  <div class="policy-section" id="s3">
+    <h2><span class="sec-num">3</span> Accounts</h2>
+    <p>Core features may work without an account. Some features such as cloud sync, shared workspaces, and purchase restoration may require sign-in. You are responsible for keeping your account secure.</p>
+  </div>
+
+  <div class="policy-section" id="s4">
+    <h2><span class="sec-num">4</span> Subscriptions</h2>
+    <p>Penny may offer auto-renewable subscriptions. Pricing, trial terms, and billing frequency are shown before purchase. Payment is charged to your Apple ID at confirmation.</p>
+    <ul>
+      <li>Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current period.</li>
+      <li>Your account may be charged for renewal within 24 hours before the end of the current period.</li>
+      <li>Refunds are handled by Apple and subject to its policies and applicable law.</li>
+      <li>Deleting the app does not cancel a subscription.</li>
+    </ul>
+  </div>
+
+  <div class="policy-section" id="s5">
+    <h2><span class="sec-num">5</span> Cancellation</h2>
+    <p>To cancel a subscription, open the iPhone Settings app, tap your Apple ID, tap <strong>Subscriptions</strong>, choose Penny, and cancel the plan. You can also manage subscriptions from the App Store account screen.</p>
+  </div>
+
+  <div class="policy-section" id="s6">
+    <h2><span class="sec-num">6</span> Account Deletion</h2>
+    <p>If you have a Penny account, you can request deletion from <strong>Settings -&gt; Account -&gt; Delete Account</strong>. Follow the prompts in the app. Account deletion is intended to remove your account and associated cloud data, subject to legal, security, fraud prevention, dispute resolution, and financial record obligations.</p>
+    <p>Account deletion does not cancel an Apple subscription. Cancel subscriptions separately.</p>
+  </div>
+
+  <div class="policy-section" id="s7">
+    <h2><span class="sec-num">7</span> Retention</h2>
+    <p>Local data remains on your device until you delete it, delete Penny, or reset the device. Cloud data is retained while your account is active or as needed to provide the service. Backup copies may persist for a limited period before routine deletion.</p>
+  </div>
+
+  <div class="policy-section" id="s8">
+    <h2><span class="sec-num">8</span> Acceptable Use</h2>
+    <p>You agree not to misuse Penny, interfere with the service, bypass payment controls, attempt unauthorized access, or use the app unlawfully.</p>
+  </div>
+
+  <div class="policy-section" id="s9">
+    <h2><span class="sec-num">9</span> Changes</h2>
+    <p>We may update the app or these Terms from time to time. If changes are material, we may provide notice in the app or store listing. Continued use after changes means you accept the updated Terms.</p>
+  </div>
+
+  <div class="policy-section" id="s10">
+    <h2><span class="sec-num">10</span> Disclaimers</h2>
+    <p>Penny is provided "as is" and "as available" to the maximum extent permitted by law. We do not guarantee uninterrupted service or error-free calculations.</p>
+  </div>
+
+  <div class="policy-section" id="s11">
+    <h2><span class="sec-num">11</span> Liability</h2>
+    <p>To the maximum extent permitted by law, Penny and its developer are not liable for indirect, incidental, special, consequential, or punitive damages, or losses caused by your use of the app. Where liability cannot be excluded, it is limited to the amount you paid in the twelve months before the claim.</p>
+  </div>
+
+  <div class="policy-section" id="s12">
+    <h2><span class="sec-num">12</span> Privacy</h2>
+    <p>Your use of Penny is also governed by the <a href="privacy.html" style="color:var(--violet);">Privacy Policy</a>.</p>
+  </div>
+
+  <div class="policy-section" id="s13">
+    <h2><span class="sec-num">13</span> Contact</h2>
+    <p>For support, legal questions, or account deletion help, contact us through the official support channel associated with Penny or the project repository.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">
+    <img class="logo-gem" src="assets/img/penny_icon.png" alt="Penny logo" style="width:28px;height:28px;" />
+    <span>&copy; 2026 Penny &middot; All Rights Reserved</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="terms.html">Terms</a>
+    <a href="privacy.html">Privacy</a>
+  </div>
+</footer>
+</body>
+</html>
