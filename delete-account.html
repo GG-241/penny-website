@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delete your account - Smart Penny</title>
+  <meta name="description" content="How to delete your Smart Penny account and data." />
+  <link rel="icon" type="image/png" href="assets/img/penny_icon.png" />
+  <link rel="apple-touch-icon" href="assets/img/penny_icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1rem, 5vw, 3rem);
+      height: 64px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-gem { width: 34px; height: 34px; border-radius: 8px; object-fit: contain; }
+    .nav-logo span { font-weight: 700; font-size: 1.15rem; color: var(--text); }
+    .nav-back {
+      color: var(--muted); text-decoration: none; font-size: .875rem;
+      font-weight: 500; display: flex; align-items: center; gap: .4rem;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .page-hero {
+      padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 6vw, 3rem) 2rem;
+      text-align: center;
+      background: var(--hero-glow);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero .label {
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--violet); margin-bottom: .75rem;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+      letter-spacing: -.03em; margin-bottom: .75rem;
+    }
+    .page-hero p { color: var(--muted); font-size: .95rem; max-width: 520px; margin: 0 auto; }
+    .effective-badge {
+      display: inline-block; margin-top: 1.25rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 100px; padding: .35rem 1rem;
+      font-size: .8rem; color: var(--muted); font-weight: 500;
+    }
+
+    .content-wrap {
+      max-width: 860px; margin: 0 auto;
+      padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+    }
+
+    .toc {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.5rem 1.75rem;
+      margin-bottom: 3rem;
+    }
+    .toc h2 {
+      font-size: .78rem; font-weight: 600; letter-spacing: .09em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+    }
+    .toc ol { padding-left: 1.25rem; display: flex; flex-direction: column; gap: .4rem; }
+    .toc li { font-size: .875rem; }
+    .toc a { color: var(--violet); text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
+
+    .policy-section { margin-bottom: 3rem; scroll-margin-top: 80px; }
+    .policy-section h2 {
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;
+      padding-bottom: .6rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .sec-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; background: rgb(var(--accent-primary-rgb) / .18);
+      color: var(--violet); border-radius: 6px;
+      font-size: .75rem; font-weight: 700; flex-shrink: 0;
+    }
+    .policy-section p { color: var(--muted); font-size: .925rem; margin-bottom: .85rem; }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section ul, .policy-section ol {
+      color: var(--muted); font-size: .925rem;
+      padding-left: 1.5rem; margin-bottom: .85rem;
+      display: flex; flex-direction: column; gap: .45rem;
+    }
+    .policy-section strong { color: var(--text); font-weight: 600; }
+
+    .callout {
+      border-radius: 10px; padding: 1rem 1.25rem;
+      margin: 1.25rem 0; font-size: .9rem;
+      background: var(--callout-info-bg); border: 1px solid var(--callout-info-border);
+      color: var(--callout-info-text);
+    }
+    .callout strong { color: inherit; font-weight: 700; }
+
+    .data-table {
+      width: 100%; border-collapse: collapse;
+      margin: 1rem 0 .85rem; font-size: .875rem;
+    }
+    .data-table th {
+      font-size: .75rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+      color: var(--muted); padding: .6rem .75rem; text-align: left;
+      border-bottom: 1px solid var(--border); background: var(--surface);
+    }
+    .data-table td {
+      padding: .6rem .75rem; border-bottom: 1px solid var(--border); color: var(--muted);
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 2rem clamp(1rem, 6vw, 3rem);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .footer-logo span { color: var(--muted); font-size: .875rem; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--muted); font-size: .85rem; text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img class="logo-gem" src="assets/img/penny_icon.png" alt="Penny logo" />
+    <span>Smart Penny</span>
+  </a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+<div class="page-hero">
+  <p class="label">Your data</p>
+  <h1>Delete your account and data</h1>
+  <p>How to permanently delete your Smart Penny account and the data associated with it.</p>
+</div>
+<div class="content-wrap">
+  <div class="callout">
+    <strong>No account?</strong> If you never signed in, all your data lives only on your device. Deleting the app, or using <strong>Settings -&gt; Delete All Data -&gt; This device only</strong>, removes it completely.
+  </div>
+  <div class="policy-section" id="in-app">
+    <h2><span class="sec-num">1</span> Delete from the app</h2>
+    <ol>
+      <li>Open Smart Penny and sign in.</li>
+      <li>Go to <strong>Settings -&gt; Account -&gt; Delete Account</strong>.</li>
+      <li>Confirm with <strong>Delete forever</strong>.</li>
+    </ol>
+    <p>Deletion happens immediately and cannot be undone.</p>
+  </div>
+  <div class="policy-section" id="request">
+    <h2><span class="sec-num">2</span> Request deletion without the app</h2>
+    <p>If you no longer have the app installed, email <a href="mailto:SUPPORT_EMAIL_PLACEHOLDER" style="color:var(--violet)">SUPPORT_EMAIL_PLACEHOLDER</a> from the address linked to your Smart Penny account (your Apple or Google sign-in email) with the subject <strong>Delete my account</strong>. We verify the request and delete the account within 30 days, then confirm by email.</p>
+  </div>
+  <div class="policy-section" id="what">
+    <h2><span class="sec-num">3</span> What is deleted</h2>
+    <ul>
+      <li>Your account and profile (name, email, profile photo, sign-in identifiers)</li>
+      <li>All data synced to Smart Penny's servers: transactions, budgets, goals, categories, workspaces, split groups and contact matches</li>
+      <li>Push-notification tokens and sharing identifiers</li>
+      <li>Local data on the device you delete from</li>
+    </ul>
+  </div>
+  <div class="policy-section" id="kept">
+    <h2><span class="sec-num">4</span> What may be kept</h2>
+    <p>Items you shared with other people (for example a split-group expense) remain visible to them as part of their own records. Copies in our hosting provider's routine database backups expire on that provider's backup schedule. We keep nothing else, except where retention is required by law.</p>
+  </div>
+</div>
+<footer>
+  <div class="footer-logo">
+    <img class="logo-gem" src="assets/img/penny_icon.png" alt="Penny logo" style="width:28px;height:28px;" />
+    <span>&copy; 2026 Smart Penny &middot; All Rights Reserved</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="terms.html">Terms</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="support.html">Support</a>
+    <a href="delete-account.html">Delete account</a>
+  </div>
+</footer>
+</body>
+</html>
