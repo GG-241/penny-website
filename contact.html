@@ -2,16 +2,48 @@
 <html lang="en">
 <head>
   <!--
-    SETUP (one-time, ~1 minute):
-    This form sends messages via Web3Forms (free, 250 msgs/month, no account).
-    The destination email stays hidden in their dashboard — it never appears in
-    this file, so it can't be scraped from the site.
+    SETUP (one-time, ~10 minutes — Google Apps Script):
+    This form POSTs to a tiny Apps Script web app that emails you each message
+    with MailApp. Your email and name exist only inside your private script —
+    nothing here reveals them. The /exec URL is safe to publish.
 
-    1. Go to https://web3forms.com and enter the inbox you want messages in
-    2. You'll instantly get an "Access Key" by email (looks like a1b2-...-z9)
-    3. Paste it as the value of the hidden "access_key" input below
-    4. Push — the form is live. The key being visible in source is by design;
-       the honeypot field + Web3Forms' filtering block spam.
+    1. Go to https://script.google.com → New project, and paste this code
+       (set RECIPIENT to the inbox you want messages in):
+
+       function doPost(e) {
+         try {
+           var b = JSON.parse(e.postData.contents || '{}');
+           if (b.botcheck) return ok();                                // honeypot: drop silently
+           if (b._t && (Date.now() - Number(b._t)) < 3000) return ok(); // filled in <3s: bot
+           var email = String(b.email || '').trim();
+           var msg   = String(b.message || '').trim();
+           if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return bad('invalid email');
+           if (msg.length < 10) return bad('message too short');
+           var topic = String(b.topic || 'other').slice(0, 40);
+           var name  = String(b.name || '(no name)').slice(0, 80);
+           MailApp.sendEmail({
+             to: 'RECIPIENT@gmail.com',
+             replyTo: email,
+             subject: 'Lucky Penny contact [' + topic + '] — ' + name,
+             body: 'Topic: ' + topic + '\nFrom: ' + name + ' <' + email + '>\n\n' + msg
+           });
+           return ok();
+         } catch (err) { return bad('server error'); }
+       }
+       function ok()   { return out({success:true}); }
+       function bad(m) { return out({success:false, message:m}); }
+       function out(o) { return ContentService.createTextOutput(JSON.stringify(o))
+                           .setMimeType(ContentService.MimeType.JSON); }
+
+    2. Deploy → New deployment → type "Web app" → Execute as: Me →
+       Who has access: Anyone → Deploy (authorize MailApp when prompted).
+    3. Copy the Web app URL (https://script.google.com/macros/s/…/exec)
+       and paste it as the form's action below.
+    4. Push — the form is live. Consumer Gmail allows ~100 MailApp
+       emails/day, far above expected volume.
+
+    Note: the page sends with fetch mode "no-cors", so it can't read the
+    script's JSON reply — success is shown once the request is delivered.
   -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -164,10 +196,7 @@
     <strong>Settings → Error report</strong> into your message — it contains no transaction data.
   </div>
 
-  <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
-    <input type="hidden" name="access_key" value="PASTE-WEB3FORMS-ACCESS-KEY-HERE" />
-    <input type="hidden" name="from_name" value="Lucky Penny website" />
-    <input type="hidden" name="subject" id="f-subject" value="Lucky Penny — new message" />
+  <form id="contact-form" action="PASTE-APPS-SCRIPT-WEB-APP-URL-HERE" method="POST" novalidate>
     <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
     <label for="f-name">Your name <span class="opt">(optional)</span></label>
@@ -223,17 +252,13 @@
 
     var form = document.getElementById('contact-form');
     var topicSel = document.getElementById('f-topic');
-    var subjectEl = document.getElementById('f-subject');
     var status = document.getElementById('form-status');
     var submitBtn = document.getElementById('f-submit');
+    var pageLoad = Date.now();
 
     // Preselect topic from ?topic=… (e.g. linked from the privacy/deletion pages)
     var wanted = new URLSearchParams(window.location.search).get('topic');
     if (wanted && TOPICS[wanted]) topicSel.value = wanted;
-
-    function syncSubject() { subjectEl.value = TOPICS[topicSel.value].subject; }
-    topicSel.addEventListener('change', syncSubject);
-    syncSubject();
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -251,20 +276,29 @@
       status.className = '';
       status.textContent = 'Sending…';
 
-      fetch('https://api.web3forms.com/submit', {
+      var payload = {
+        name: form.name.value,
+        email: form.email.value,
+        topic: topicSel.value,
+        message: form.message.value,
+        botcheck: form.botcheck.checked ? '1' : '',
+        _t: pageLoad
+      };
+
+      // text/plain + no-cors: avoids a CORS preflight the Apps Script /exec
+      // endpoint won't answer; the reply is opaque, so delivery of the request
+      // itself is what we treat as success.
+      fetch(form.action, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
       })
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          if (data.success) {
-            status.className = 'ok';
-            status.textContent = 'Sent — thank you. We reply within 3 business days.';
-            form.reset();
-            topicSel.value = wanted && TOPICS[wanted] ? wanted : 'support';
-            syncSubject();
-          } else { throw new Error(data.message || 'Send failed'); }
+        .then(function () {
+          status.className = 'ok';
+          status.textContent = 'Sent — thank you. We reply within 3 business days.';
+          form.reset();
+          if (wanted && TOPICS[wanted]) topicSel.value = wanted;
         })
         .catch(function () {
           status.className = 'err';
