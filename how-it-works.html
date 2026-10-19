@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How it works — Lucky Penny</title>
+  <meta name="description" content="The technical side of Lucky Penny: local-first storage, on-device forecasting and receipt scanning, signed offline sharing, and full data portability." />
+  <link rel="canonical" href="https://gg-241.github.io/penny-website/how-it-works.html" />
+  <meta property="og:title" content="How Lucky Penny works" />
+  <meta property="og:description" content="Local-first storage, on-device forecasting, signed offline sharing, and export of everything — the technical tour." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://gg-241.github.io/penny-website/assets/img/og-image.jpg" />
+  <link rel="icon" type="image/png" href="assets/img/penny_icon.png" />
+  <link rel="apple-touch-icon" href="assets/img/penny_icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1rem, 5vw, 3rem);
+      height: 64px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-gem { width: 34px; height: 34px; border-radius: 8px; object-fit: contain; }
+    .nav-logo span { font-weight: 700; font-size: 1.15rem; color: var(--text); }
+    .nav-back {
+      color: var(--muted); text-decoration: none; font-size: .875rem;
+      font-weight: 500; display: flex; align-items: center; gap: .4rem;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .page-hero {
+      padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 6vw, 3rem) 2.5rem;
+      text-align: center;
+      background: var(--hero-glow);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero .label {
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--violet); margin-bottom: .75rem;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+      letter-spacing: -.03em; margin-bottom: .75rem;
+    }
+    .page-hero p { color: var(--muted); font-size: .95rem; max-width: 560px; margin: 0 auto; }
+
+    .content-wrap {
+      max-width: 860px; margin: 0 auto;
+      padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+    }
+
+    .policy-section { margin-bottom: 3rem; scroll-margin-top: 80px; }
+    .policy-section h2 {
+      font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;
+      padding-bottom: .6rem; border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .sec-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; background: rgb(var(--accent-primary-rgb) / .18);
+      color: var(--violet); border-radius: 6px;
+      font-size: .75rem; font-weight: 700; flex-shrink: 0;
+    }
+    .policy-section p { color: var(--muted); font-size: .925rem; margin-bottom: .85rem; }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section ul {
+      color: var(--muted); font-size: .925rem;
+      padding-left: 1.5rem; margin-bottom: .85rem;
+      display: flex; flex-direction: column; gap: .45rem;
+    }
+    .policy-section strong { color: var(--text); font-weight: 600; }
+    .policy-section code {
+      background: var(--surface-2); border: 1px solid var(--border);
+      padding: .1em .4em; border-radius: 5px; font-size: .85em;
+    }
+
+    .stack-cols {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      margin-top: 1.25rem;
+    }
+    @media (max-width: 600px) { .stack-cols { grid-template-columns: 1fr; } }
+    .stack-col {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.75rem;
+    }
+    .stack-col h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1.2rem; display: flex; align-items: center; gap: .5rem; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .tag {
+      padding: .3rem .75rem; background: var(--bg3);
+      border: 1px solid var(--border); border-radius: 100px;
+      font-size: .8rem; color: var(--muted); font-weight: 500;
+    }
+
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 2rem clamp(1rem, 6vw, 3rem);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .footer-logo span { color: var(--muted); font-size: .875rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); font-size: .85rem; text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img class="logo-gem" src="assets/img/penny_icon.png" alt="Lucky Penny logo" />
+    <span>Lucky Penny</span>
+  </a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+<div class="page-hero">
+  <p class="label">Under the hood</p>
+  <h1>How it works</h1>
+  <p>The technical tour — for people who like to know what an app does before they install it.</p>
+</div>
+<div class="content-wrap">
+
+  <div class="policy-section">
+    <h2><span class="sec-num">1</span> Local-first storage</h2>
+    <p>Every feature — tracking, budgets, goals, analytics, splitting — runs against a local database on your phone. No network request is required to open the app, log a transaction, or read your history. Sensitive values (biometric-gated keys, sync credentials) live in the platform's protected storage: Keychain/Secure Enclave on iPhone, Keystore on Android.</p>
+    <p>Deletions are soft by default and fully auditable, so an accidental swipe is recoverable — until you explicitly wipe data, at which point it is gone, on device and in any cloud copy.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="sec-num">2</span> Forecasting, on-device</h2>
+    <p>The analytics tab projects next month from your own history — exponential smoothing (Holt-Winters) for seasonal spending patterns, plus a BG/NBD-style model for spending frequency. What-if sliders re-run the projection locally. None of it leaves the phone, and none of it needs an account.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="sec-num">3</span> Smart auto-categories</h2>
+    <p>A rule engine matching on <code>EXACT</code>, <code>CONTAINS</code>, <code>STARTS_WITH</code> and <code>REGEX</code> patterns auto-categorizes new transactions, and learns from your corrections — up to 500 self-learned rules, stored locally. It's deterministic: the same input always produces the same category, and you can inspect and edit every rule.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="sec-num">4</span> Sharing and splitting without a server in the way</h2>
+    <p>Transactions and settle-ups move between phones as ECDSA-signed QR codes or deep links, so recipients can verify what they import — offline, with no intermediary scanning your finances. Group splits support equal, custom-share and percentage division with per-person running balances.</p>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="sec-num">5</span> Your data is portable</h2>
+    <ul>
+      <li><strong>Import</strong>: YNAB, Splitwise, Revolut, N26 and Monzo formats, plus any CSV/Excel file — with duplicate detection.</li>
+      <li><strong>Export</strong>: CSV, Excel and PDF reports, or a full JSON backup of all 23 tables.</li>
+      <li><strong>Multi-currency</strong>: 15+ currencies with official EC InforEuro rates, cached offline for travel days.</li>
+      <li><strong>No lock-in</strong>: if you leave, you take everything with you in open formats.</li>
+    </ul>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="sec-num">6</span> The optional connected layer</h2>
+    <p>Sign-in (Apple or Google), cloud sync and backup, and contacts exist for people who want them. They are strictly opt-in: a fresh install makes no account-related connections, and release builds only call the services backing features you actually use. Receipt scanning OCR runs on-device — images are never uploaded.</p>
+    <div class="stack-cols">
+      <div class="stack-col">
+        <h3>📱 On your device</h3>
+        <div class="tag-list">
+          <span class="tag">Local-first storage</span>
+          <span class="tag">Offline access</span>
+          <span class="tag">On-device receipt OCR</span>
+          <span class="tag">Forecasting</span>
+          <span class="tag">Budgets &amp; goals</span>
+          <span class="tag">Export tools</span>
+          <span class="tag">Biometric lock</span>
+          <span class="tag">Accessibility</span>
+        </div>
+      </div>
+      <div class="stack-col">
+        <h3>☁️ Optional connected features</h3>
+        <div class="tag-list">
+          <span class="tag">Account sign-in</span>
+          <span class="tag">Cloud sync</span>
+          <span class="tag">Cloud backup</span>
+          <span class="tag">Contacts</span>
+          <span class="tag">Private sharing</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="policy-section">
+    <h2><span class="sec-num">7</span> Accessibility is a feature</h2>
+    <p>Five text-size presets applied app-wide, a high-contrast theme that activates from the system setting, an in-app reduce-motion toggle, and colorblind-friendly directional icons on every amount — on both platforms.</p>
+  </div>
+
+</div>
+<footer>
+  <div class="footer-logo">
+    <img class="logo-gem" src="assets/img/penny_icon.png" alt="Lucky Penny logo" style="width:28px;height:28px;" />
+    <span>&copy; 2026 Lucky Penny &middot; All Rights Reserved</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="support.html">Support</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="delete-account.html">Delete account</a>
+    <a href="mailto:itsggkoumas@gmail.com">itsggkoumas@gmail.com</a>
+  </div>
+</footer>
+</body>
+</html>
