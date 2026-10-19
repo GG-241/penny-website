@@ -4,11 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lucky Penny — Offline-First Personal Finance</title>
-  <meta name="description" content="Track transactions, manage budgets, set savings goals, and split expenses — all without an internet connection. Privacy-first personal finance." />
-  <meta property="og:title" content="Lucky Penny — Offline-First Personal Finance" />
-  <meta property="og:description" content="Your financial life, on your terms. No account required." />
+  <meta name="description" content="Lucky Penny is the private budget app: track spending, budgets and goals, and split costs with friends — offline, on your phone. No account, no bank login." />
+  <link rel="canonical" href="https://gg-241.github.io/penny-website/" />
+  <meta property="og:title" content="Lucky Penny — The private budget app" />
+  <meta property="og:description" content="No account, no bank login. Track spending, budgets and goals, and split costs with friends — offline, on your phone." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/img/penny_icon.png" />
+  <meta property="og:url" content="https://gg-241.github.io/penny-website/" />
+  <meta property="og:image" content="https://gg-241.github.io/penny-website/assets/img/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Lucky Penny dashboard: income, expenses and balance at a glance" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://gg-241.github.io/penny-website/assets/img/og-image.jpg" />
   <link rel="icon" type="image/png" href="assets/img/penny_icon.png" />
   <link rel="apple-touch-icon" href="assets/img/penny_icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -75,7 +82,7 @@
     /* ── HERO ── */
     .hero {
       text-align: center;
-      padding: clamp(5rem, 12vw, 9rem) clamp(1rem, 6vw, 3rem) clamp(4rem, 8vw, 7rem);
+      padding: clamp(4rem, 10vw, 7rem) clamp(1rem, 6vw, 3rem) clamp(3rem, 6vw, 5rem);
       background: var(--hero-glow);
     }
     .hero h1 {
@@ -85,7 +92,7 @@
       max-width: 820px; margin: 0 auto .75rem;
     }
     .hero h1 span { color: var(--violet); }
-    .hero p {
+    .hero p.hero-sub {
       font-size: clamp(1rem, 2.2vw, 1.2rem);
       color: var(--muted); max-width: 560px; margin: 0 auto 2.4rem;
     }
@@ -99,21 +106,27 @@
       color: var(--text);
       text-decoration: none;
       transition: border-color .2s, background .2s, transform .15s;
-      cursor: not-allowed;
-      opacity: .7;
     }
-    .btn-store:hover { border-color: var(--violet); background: var(--btn-hover-bg); transform: translateY(-2px); opacity: 1; }
+    .btn-store:hover { border-color: var(--violet); background: var(--btn-hover-bg); transform: translateY(-2px); }
+    .btn-store-soon, .btn-store-soon:hover {
+      cursor: default;
+      opacity: .6;
+      border-color: var(--border);
+      background: var(--bg2);
+      transform: none;
+    }
     .btn-store-icon { font-size: 1.6rem; flex-shrink: 0; }
     .btn-store-text { display: flex; flex-direction: column; align-items: flex-start; }
     .btn-store-sub { font-size: .68rem; color: var(--muted); font-weight: 500; letter-spacing: .03em; text-transform: uppercase; }
     .btn-store-name { font-size: .95rem; font-weight: 700; line-height: 1.2; }
-    .btn-ghost {
-      padding: .75rem 1.75rem;
-      border: 1.5px solid var(--border); border-radius: var(--radius);
-      color: var(--text); font-weight: 600; font-size: 1rem;
-      text-decoration: none; transition: border-color .2s, background .2s;
+    .hero-trust {
+      margin-top: 1.4rem;
+      font-size: .82rem; font-weight: 600; letter-spacing: .04em;
+      color: var(--muted);
     }
-    .btn-ghost:hover { border-color: var(--violet); background: var(--btn-ghost-hover-bg); }
+    .hero-switch { margin-top: .6rem; font-size: .9rem; color: var(--muted); }
+    .hero-switch a { color: var(--violet); text-decoration: none; font-weight: 600; }
+    .hero-switch a:hover { text-decoration: underline; }
 
     /* ── SECTION WRAPPER ── */
     section { padding: clamp(3.5rem, 8vw, 6rem) clamp(1rem, 6vw, 3rem); }
@@ -126,89 +139,61 @@
     .center { text-align: center; }
     .section-sub.center { margin: 0 auto; text-align: center; }
 
-    /* ── FEATURE GRID ── */
-    .features { background: var(--bg); }
-    .feat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.25rem;
-      margin-top: 3rem;
-      max-width: 1100px; margin-left: auto; margin-right: auto;
+    /* ── SCREENSHOT STRIP ── */
+    .shots-section { background: var(--bg); padding-top: clamp(1rem, 3vw, 2rem); }
+    .shot-strip {
+      display: flex; gap: 1.1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      margin-top: 2.25rem;
+      padding: 0 clamp(.5rem, 4vw, 2rem) 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
     }
-    .feat-card {
-      background: var(--bg2);
+    .shot-strip img {
+      width: clamp(190px, 60vw, 236px);
+      height: auto;
+      flex-shrink: 0;
+      scroll-snap-align: center;
+      border-radius: 14px;
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.6rem;
-      transition: border-color .2s, transform .2s;
+      display: block;
     }
-    .feat-card:hover { border-color: var(--card-hover-border); transform: translateY(-3px); }
-    .feat-icon {
-      width: 44px; height: 44px; border-radius: 10px;
-      background: var(--feature-icon-bg);
-      display: grid; place-items: center; font-size: 22px; margin-bottom: 1rem;
-    }
-    .feat-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
-    .feat-card p { font-size: .875rem; color: var(--muted); line-height: 1.55; }
 
-    /* ── PREMIUM ── */
-    .premium-section { background: var(--bg2); }
-    .premium-inner { max-width: 1100px; margin: 0 auto; }
-    .tier-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
-      margin-top: 3rem;
+    /* ── OUTCOME BLOCKS ── */
+    .features { background: var(--bg); }
+    .outcomes { max-width: 960px; margin: 2.5rem auto 0; }
+    .outcome {
+      display: grid; grid-template-columns: 1.15fr .85fr;
+      gap: clamp(2rem, 6vw, 4.5rem); align-items: center;
+      padding: clamp(1.75rem, 4vw, 2.5rem) 0;
     }
-    @media (max-width: 720px) { .tier-grid { grid-template-columns: 1fr; } }
-    .tier-card {
-      border-radius: var(--radius); padding: 2rem;
-      border: 1px solid var(--border);
+    .outcome + .outcome { border-top: 1px solid var(--border); }
+    .outcome.flip .outcome-shot { order: -1; }
+    @media (max-width: 700px) {
+      .outcome { grid-template-columns: 1fr; }
+      .outcome .outcome-shot { order: -1 !important; }
     }
-    .tier-free { background: var(--bg3); }
-    .tier-premium {
-      background: var(--premium-bg);
-      border-color: var(--premium-border);
-      position: relative; overflow: hidden;
+    .outcome h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; margin-bottom: .35rem; }
+    .outcome .kicker { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--violet); margin-bottom: .4rem; display: block; }
+    .outcome-shot { text-align: center; }
+    .outcome-shot img {
+      width: clamp(180px, 50vw, 225px); height: auto;
+      border-radius: 14px; border: 1px solid var(--border);
     }
-    .tier-premium::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: var(--premium-glow);
-      pointer-events: none;
+    .outcome-list { list-style: none; margin-top: 1.1rem; display: flex; flex-direction: column; gap: .65rem; }
+    .outcome-list li {
+      display: flex; align-items: flex-start; gap: .75rem;
+      font-size: .925rem; color: var(--muted);
     }
-    .tier-badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
-      padding: .25rem .75rem; border-radius: 100px; margin-bottom: 1rem;
+    .check { color: var(--green); font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+    .features-more {
+      max-width: 960px; margin: 2rem auto 0;
+      text-align: center; color: var(--muted); font-size: .9rem;
     }
-    .tier-badge-free { background: var(--badge-free-bg); color: var(--muted); }
-    .tier-badge-premium { background: var(--badge-premium-bg); color: var(--badge-premium-text); }
-    .tier-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: .3rem; }
-    .tier-price { font-size: .9rem; color: var(--muted); margin-bottom: 1.5rem; }
-    .tier-price strong { color: var(--text); font-size: 1.05rem; }
-    .tier-list { list-style: none; display: flex; flex-direction: column; gap: .65rem; }
-    .tier-list li { display: flex; align-items: flex-start; gap: .65rem; font-size: .9rem; color: var(--muted); }
-    .tier-list li .icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
-    .tier-list li .icon-yes { color: var(--green); }
-    .tier-list li .icon-lock { color: var(--violet); }
-    .tier-list li strong { color: var(--text); font-weight: 600; }
-    .premium-divider {
-      display: flex; align-items: center; justify-content: center;
-      margin: 2.5rem 0 0;
-    }
-    .premium-divider span {
-      font-size: .8rem; color: var(--muted); background: var(--divider-bg);
-      padding: 0 1rem; white-space: nowrap;
-    }
-    .premium-divider::before, .premium-divider::after {
-      content: ''; flex: 1; height: 1px; background: var(--border);
-    }
-    .coming-soon-chip {
-      display: inline-block; font-size: .68rem; font-weight: 600;
-      background: var(--chip-warn-bg); color: var(--chip-warn-text);
-      border: 1px solid var(--chip-warn-border);
-      border-radius: 100px; padding: .1rem .5rem; margin-left: .4rem;
-      vertical-align: middle; line-height: 1.6;
-    }
+    .features-more a { color: var(--violet); text-decoration: none; font-weight: 600; }
+    .features-more a:hover { text-decoration: underline; }
 
     /* ── OFFLINE HIGHLIGHT ── */
     .offline-section {
@@ -226,7 +211,6 @@
       display: flex; align-items: flex-start; gap: .75rem;
       font-size: .925rem; color: var(--muted);
     }
-    .check { color: var(--green); font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
     .offline-card {
       background: var(--bg2); border: 1px solid var(--border);
       border-radius: var(--radius); padding: 2rem;
@@ -244,25 +228,6 @@
     .badge-yes  { background: rgb(var(--accent-success-rgb) / .18); color: var(--green); }
     .badge-opt  { background: var(--chip-bg); color: var(--chip-text); }
 
-    /* ── TECH STACK ── */
-    .stack-section { background: var(--bg); }
-    .stack-cols {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
-      max-width: 900px; margin: 2.5rem auto 0;
-    }
-    @media (max-width: 600px) { .stack-cols { grid-template-columns: 1fr; } }
-    .stack-col {
-      background: var(--bg2); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 1.75rem;
-    }
-    .stack-col h3 { font-size: 1rem; font-weight: 700; margin-bottom: 1.2rem; display: flex; align-items: center; gap: .5rem; }
-    .tag-list { display: flex; flex-wrap: wrap; gap: .5rem; }
-    .tag {
-      padding: .3rem .75rem; background: var(--bg3);
-      border: 1px solid var(--border); border-radius: 100px;
-      font-size: .8rem; color: var(--muted); font-weight: 500;
-    }
-
     /* ── PLATFORM TABLE ── */
     .platform-section { background: var(--bg2); }
     .plat-table { width: 100%; max-width: 820px; margin: 2.5rem auto 0; border-collapse: collapse; }
@@ -275,42 +240,33 @@
     .plat-table tr:last-child td { border-bottom: none; }
     .plat-table tr:hover td { background: var(--table-hover); }
     .dot-yes  { color: var(--green); }
-    .dot-no   { color: var(--muted); }
-    .dot-part { color: var(--banner-dot); }
 
-    /* ── ROADMAP ── */
-    .roadmap-section {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
+    /* ── FAQ ── */
+    .faq-section { background: var(--bg); border-top: 1px solid var(--border); }
+    .faq-list {
+      max-width: 760px; margin: 2.5rem auto 0;
+      display: flex; flex-direction: column; gap: .75rem;
     }
-    .roadmap-inner { max-width: 1100px; margin: 0 auto; }
-    .roadmap-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 1.25rem;
-      margin-top: 3rem;
+    .faq-list details {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.05rem 1.35rem;
+      transition: border-color .2s;
     }
-    .roadmap-card {
-      background: var(--bg2);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.5rem;
+    .faq-list details[open] { border-color: var(--premium-border); }
+    .faq-list summary {
+      cursor: pointer; list-style: none;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      font-weight: 600; font-size: .95rem;
     }
-    .roadmap-card h4 {
-      font-size: .875rem; font-weight: 700; margin-bottom: .75rem;
-      display: flex; align-items: center; gap: .5rem;
+    .faq-list summary::-webkit-details-marker { display: none; }
+    .faq-list summary::after {
+      content: '+'; color: var(--violet);
+      font-size: 1.3rem; font-weight: 700; line-height: 1; flex-shrink: 0;
     }
-    .roadmap-card ul {
-      list-style: none; display: flex; flex-direction: column; gap: .45rem;
-    }
-    .roadmap-card ul li {
-      font-size: .82rem; color: var(--muted);
-      display: flex; align-items: flex-start; gap: .5rem;
-    }
-    .roadmap-card ul li::before {
-      content: '·'; color: var(--violet); font-weight: 700;
-      flex-shrink: 0; margin-top: 1px;
-    }
+    .faq-list details[open] summary::after { content: '−'; }
+    .faq-list details p { margin-top: .7rem; color: var(--muted); font-size: .9rem; }
+    .faq-list details a { color: var(--violet); text-decoration: none; }
+    .faq-list details a:hover { text-decoration: underline; }
 
     /* ── FOOTER ── */
     footer {
@@ -322,14 +278,14 @@
     }
     .footer-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
     .footer-logo span { color: var(--muted); font-size: .875rem; }
-    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
     .footer-links a { color: var(--muted); font-size: .85rem; text-decoration: none; transition: color .2s; }
     .footer-links a:hover { color: var(--text); }
   </style>
 </head>
 <body>
 
-<!-- WIP BANNER -->
+<!-- WIP BANNER (remove at launch) -->
 <div class="wip-banner">
   <span class="wip-dot"></span>
   Currently in private testing &nbsp;·&nbsp; App Store &amp; Google Play launch coming soon
@@ -343,190 +299,54 @@
   </a>
   <ul class="nav-links">
     <li><a href="#features">Features</a></li>
-    <li><a href="#premium">Premium</a></li>
     <li><a href="#offline">Privacy</a></li>
-    <li><a href="#tech">Tech Stack</a></li>
     <li><a href="#platforms">Platforms</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#faq">FAQ</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
-  <h1>Your finances, <span>completely private</span> and always available.</h1>
-  <p>Track transactions, manage budgets, set savings goals, split expenses with groups — all without an internet connection or an account.</p>
+  <h1>The <span>private budget app</span>. No account, no bank login.</h1>
+  <p class="hero-sub">Track spending, budgets and goals, and split costs with friends — offline, on your phone.</p>
   <div class="hero-btns">
-    <a class="btn-store" href="#" onclick="return false;" title="Coming soon to the App Store">
+    <!--
+      LAUNCH DAY: the listings are not live yet (both URLs 404). When the App Store
+      listing goes live, change this div back into a real link:
+        <a class="btn-store" href="https://apps.apple.com/app/id6760491274">
+      and for Play:
+        <a class="btn-store" href="https://play.google.com/store/apps/details?id=com.luckypenny.app">
+      Remove class "btn-store-soon", keep the inner spans, and delete the WIP banner above.
+    -->
+    <div class="btn-store btn-store-soon" aria-disabled="true">
       <span class="btn-store-icon">🍎</span>
       <span class="btn-store-text">
-        <span class="btn-store-sub">Download on the</span>
+        <span class="btn-store-sub">Coming soon to the</span>
         <span class="btn-store-name">App Store</span>
       </span>
-    </a>
-    <a class="btn-store" href="#" onclick="return false;" title="Coming soon to Google Play">
+    </div>
+    <div class="btn-store btn-store-soon" aria-disabled="true">
       <span class="btn-store-icon">▶</span>
       <span class="btn-store-text">
-        <span class="btn-store-sub">Get it on</span>
+        <span class="btn-store-sub">Coming soon to</span>
         <span class="btn-store-name">Google Play</span>
       </span>
-    </a>
+    </div>
   </div>
+  <p class="hero-trust">Free · No ads · No account · Data stored on your phone</p>
+  <p class="hero-switch">Already tracking elsewhere? <a href="#faq-import">Import your history from YNAB, Splitwise, Revolut, N26 or Monzo in 2&nbsp;minutes&nbsp;→</a></p>
 </header>
 
-<!-- FEATURES -->
-<section id="features" class="features">
-  <div style="max-width:1100px;margin:0 auto;">
-    <p class="section-label center">What Lucky Penny does</p>
-    <h2 class="section-title center">Everything you need, nothing you don't</h2>
-    <p class="section-sub center">A full personal finance suite that works entirely on-device — no subscriptions, no data collection, no internet required.</p>
-  </div>
-  <div class="feat-grid">
-    <div class="feat-card">
-      <div class="feat-icon">💸</div>
-      <h3>Transaction Tracking</h3>
-      <p>Record income and expenses with categories, notes, multi-currency support, receipt scanning, reference numbers, and a full soft-delete audit trail.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">📊</div>
-      <h3>Budgets</h3>
-      <p>Period-based budgets with per-category limits and live spending progress. Animated progress bars pulse amber at 80% and red when overspent.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🎯</div>
-      <h3>Savings Goals</h3>
-      <p>Set targets with deadlines, track contributions, and see the monthly savings amount required to hit your goal on time.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">📈</div>
-      <h3>Advanced Analytics</h3>
-      <p>Spending forecasts (Holt-Winters + BG/NBD), cash flow charts, budget variance bars, category drill-downs, and what-if scenario sliders — all offline.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🤝</div>
-      <h3>Expense Splitting</h3>
-      <p>Create split groups, divide expenses equally or with custom percentages, track pairwise balances, and settle debts with a QR flow.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">👥</div>
-      <h3>Contacts &amp; Associations</h3>
-      <p>Find people, manage invitations, and keep shared finance activity organized with in-app notifications.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">📷</div>
-      <h3>Receipt Scanning</h3>
-      <p>Scan receipts on device to capture transaction details quickly and keep them organized with your existing rules.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🌍</div>
-      <h3>Multi-Currency</h3>
-      <p>15+ currencies with live EC InforEuro exchange rates, offline gzip cache, and automatic base-currency conversion. Each transaction displays in its own currency.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">📲</div>
-      <h3>QR Code Sharing</h3>
-      <p>Share transactions with QR codes that are quick to create, easy to scan, and work offline.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">☁️</div>
-      <h3>Cloud Sync &amp; Backup</h3>
-      <p>Optional cloud sync and backup keep your data available across devices when you choose to turn them on.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🔐</div>
-      <h3>Secure Sync</h3>
-      <p>Your synced data stays private and protected with account and device-level safeguards.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">♿</div>
-      <h3>Accessibility</h3>
-      <p>5 text size presets, high-contrast theme (auto-activates from system setting), in-app reduce motion toggle, and colorblind-friendly directional icons on all amounts.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🔁</div>
-      <h3>Recurring Transactions</h3>
-      <p>Configurable templates with daily, weekly, monthly, and yearly recurrence. Auto-generated on app launch with smart scheduling.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🤖</div>
-      <h3>AI Categorization</h3>
-      <p>Rule-based auto-categorization with EXACT, CONTAINS, STARTS_WITH, and REGEX matching. Self-learns from your choices with up to 500 learned rules.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">📄</div>
-      <h3>Export &amp; Reports</h3>
-      <p>PDF financial reports, CSV/Excel exports, and full JSON backups of all 23 tables. Import CSV, Excel, and JSON with deduplication.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🏦</div>
-      <h3>Apple Wallet Import</h3>
-      <p>Import transactions from Apple Wallet on supported iPhone devices, with duplicate detection and easy review.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🔔</div>
-      <h3>In-App Notifications</h3>
-      <p>Helpful alerts for invites, activity, and budget updates appear inside the app when you need them.</p>
-    </div>
-    <div class="feat-card">
-      <div class="feat-icon">🔒</div>
-      <h3>Biometric Lock</h3>
-      <p>Face ID, Touch ID, and PIN fallback help keep the app locked when you want extra protection.</p>
-    </div>
-  </div>
-</section>
-
-<!-- PREMIUM -->
-<section id="premium" class="premium-section">
-  <div class="premium-inner">
-    <p class="section-label center">Plans</p>
-    <h2 class="section-title center">Free forever. More when you need it.</h2>
-    <p class="section-sub center">Every core feature is free with no account required. Premium unlocks powerful collaboration, deep analytics, and enhanced privacy for users who want more.</p>
-
-    <div class="tier-grid">
-
-      <!-- FREE -->
-      <div class="tier-card tier-free">
-        <span class="tier-badge tier-badge-free">Free</span>
-        <h3>Always included</h3>
-        <p class="tier-price">No account · No subscription · <strong>Forever free</strong></p>
-        <ul class="tier-list">
-          <li><span class="icon icon-yes">✓</span><span><strong>Transaction tracking</strong> — unlimited income &amp; expense records with soft-delete</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Budgets</strong> — live spending progress with animated progress bars</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Savings goals</strong> — targets, contributions, and monthly calculator</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Basic analytics</strong> — bar, line, and pie charts with date-range selector</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Multi-currency</strong> — 15+ currencies with live EC InforEuro rates</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Receipt scanning</strong> — scan receipts on device and organize them automatically</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>QR &amp; deep-link sharing</strong> — ECDSA-signed transaction sharing, offline</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Group expense splitting</strong> — consent-based invites, settle debts</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Export &amp; reports</strong> — CSV, Excel, PDF, and full JSON backup (23 tables)</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Cloud backup</strong> — optional backup &amp; restore</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>AI categorization</strong> — rule-based auto-tagging with self-learning</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Apple Wallet import</strong> — supported on iPhone with smart categorization</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>Accessibility</strong> — text size, high contrast, reduce motion, colorblind icons</span></li>
-          <li><span class="icon icon-yes">✓</span><span><strong>4 languages</strong> — English, Greek, Spanish, French</span></li>
-        </ul>
-      </div>
-
-      <!-- PREMIUM -->
-      <div class="tier-card tier-premium">
-        <span class="tier-badge tier-badge-premium">✦ Premium</span>
-        <h3>Everything in Free, plus:</h3>
-        <p class="tier-price"><strong>$4.99 / month</strong> &nbsp;·&nbsp; or <strong>$39.99 / year</strong> &nbsp;·&nbsp; Cancel anytime</p>
-        <ul class="tier-list">
-          <li><span class="icon icon-lock">✦</span><span><strong>Secure sync</strong> — private protection for cloud-synced data</span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Advanced analytics</strong> — spending forecasts (Holt-Winters), confidence bands, category drill-downs, what-if sliders</span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Collaborative workspaces</strong> — shared workspaces with Owner/Admin/Member/Viewer roles and ownership transfer</span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Shared expenses</strong> — log and settle expenses across workspace members with full audit trail</span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Workspace budgets</strong> — team-scoped budget tracking separate from personal budgets</span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Enhanced receipt scanning</strong> — cloud AI extraction for higher accuracy and multi-language receipts <span class="coming-soon-chip">Coming soon</span></span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Live sync</strong> — updates shared across workspace members</span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Push notifications</strong> — alerts for shared expenses, settlements, and workspace activity <span class="coming-soon-chip">Coming soon</span></span></li>
-          <li><span class="icon icon-lock">✦</span><span><strong>Scheduled reports</strong> — automated email delivery of financial summaries <span class="coming-soon-chip">Coming soon</span></span></li>
-        </ul>
-
-        <div class="premium-divider"><span>Pricing shown is indicative — subject to change before launch</span></div>
-      </div>
-
-    </div>
+<!-- SCREENSHOTS -->
+<section id="screenshots" class="shots-section" aria-label="App screenshots">
+  <p class="section-label center">See for yourself</p>
+  <div class="shot-strip">
+    <img src="assets/screenshots/1-dashboard.webp" width="640" height="1391" alt="Dashboard: income, expenses and total balance — your money at a glance" />
+    <img src="assets/screenshots/2-quickadd.webp" width="640" height="1391" loading="lazy" decoding="async" alt="New transaction: log an expense, income or investment in seconds" />
+    <img src="assets/screenshots/3-budgets.webp" width="640" height="1391" loading="lazy" decoding="async" alt="Budgets with per-category progress bars that warn you early" />
+    <img src="assets/screenshots/4-analytics.webp" width="640" height="1391" loading="lazy" decoding="async" alt="Analytics: spending habits, trends and forecasts" />
+    <img src="assets/screenshots/5-group.webp" width="640" height="1391" loading="lazy" decoding="async" alt="Group splitting for a trip: members, balances and settle up" />
+    <img src="assets/screenshots/6-privacy.webp" width="640" height="1391" loading="lazy" decoding="async" alt="First launch: all data stays on this device, sign in later to enable cloud sync" />
   </div>
 </section>
 
@@ -538,181 +358,172 @@
       <h2 class="section-title">Offline-first, always.</h2>
       <p class="section-sub">Your data lives on your device. Lucky Penny is fully functional without any network connection. Cloud features are strictly opt-in — nothing leaves your device by default.</p>
       <ul class="offline-list">
-        <li><span class="check">✓</span><span>No account required — all core features work on first launch</span></li>
+        <li><span class="check">✓</span><span>No account required — everything works on first launch</span></li>
         <li><span class="check">✓</span><span>Data stored locally on your device by default</span></li>
+        <li><span class="check">✓</span><span>Receipt scanning runs on your phone — receipt images are never uploaded</span></li>
         <li><span class="check">✓</span><span>Private keys and sensitive data kept in protected app storage</span></li>
         <li><span class="check">✓</span><span>Optional cloud sync stays private and under your control</span></li>
-        <li><span class="check">✓</span><span>Release builds connect only to the services they need</span></li>
         <li><span class="check">✓</span><span>Offline banner + connectivity guard on all network operations</span></li>
-        <li><span class="check">✓</span><span>Receipt scanning runs on-device by default — no image data ever sent</span></li>
+        <li><span class="check">✓</span><span>Biometric lock — Face ID, Touch ID or PIN</span></li>
         <li><span class="check">✓</span><span>Complete data wipe on request — device and cloud data, under your control</span></li>
       </ul>
     </div>
     <div class="offline-card">
       <h4>Feature availability</h4>
-      <div class="table-row"><span>Transactions &amp; Budgets</span><span class="badge badge-yes">Always on</span></div>
+      <div class="table-row"><span>Transactions, Budgets &amp; Goals</span><span class="badge badge-yes">Always on</span></div>
       <div class="table-row"><span>Analytics &amp; Reports</span><span class="badge badge-yes">Always on</span></div>
-      <div class="table-row"><span>Receipt Scanning</span><span class="badge badge-yes">Always on</span></div>
+      <div class="table-row"><span>Receipt Scanning (on-device)</span><span class="badge badge-yes">Always on</span></div>
       <div class="table-row"><span>QR Transaction Sharing</span><span class="badge badge-yes">Always on</span></div>
       <div class="table-row"><span>Group Expense Splitting</span><span class="badge badge-yes">Always on</span></div>
-      <div class="table-row"><span>CSV / Excel / JSON Export</span><span class="badge badge-yes">Always on</span></div>
-      <div class="table-row"><span>Apple Wallet Import</span><span class="badge badge-yes">Always on</span></div>
+      <div class="table-row"><span>CSV / Excel / PDF / JSON Export</span><span class="badge badge-yes">Always on</span></div>
+      <div class="table-row"><span>Full History Import (YNAB, Splitwise, banks)</span><span class="badge badge-yes">Always on</span></div>
       <div class="table-row"><span>Accessibility Settings</span><span class="badge badge-yes">Always on</span></div>
-      <div class="table-row"><span>Secure Sync</span><span class="badge badge-opt">Premium</span></div>
-      <div class="table-row"><span>User Contacts &amp; Associations</span><span class="badge badge-opt">Optional</span></div>
+      <div class="table-row"><span>In-App Notifications</span><span class="badge badge-yes">Always on</span></div>
+      <div class="table-row"><span>Contacts &amp; Associations</span><span class="badge badge-opt">Optional</span></div>
+      <div class="table-row"><span>Secure Cloud Sync</span><span class="badge badge-opt">Optional</span></div>
       <div class="table-row"><span>Cloud Backup</span><span class="badge badge-opt">Optional</span></div>
-      <div class="table-row"><span>Cloud Sync</span><span class="badge badge-opt">Optional</span></div>
-      <div class="table-row"><span>Push Notifications</span><span class="badge badge-opt">Optional</span></div>
-      <div class="table-row"><span>Enhanced OCR (Cloud AI)</span><span class="badge badge-opt">Premium</span></div>
     </div>
   </div>
 </section>
 
-<!-- TRUST / ARCHITECTURE -->
-<section id="tech" class="stack-section">
-  <p class="section-label center">Built to last</p>
-  <h2 class="section-title center">Fast, private, and easy to trust</h2>
-  <p class="section-sub center">Lucky Penny is designed to work smoothly on your device first, with optional connected features when you want them.</p>
-  <div class="stack-cols">
-    <div class="stack-col">
-      <h3>📱 On your device</h3>
-      <div class="tag-list">
-        <span class="tag">Local-first storage</span>
-        <span class="tag">Offline access</span>
-        <span class="tag">Receipt scanning</span>
-        <span class="tag">Budgeting</span>
-        <span class="tag">Savings goals</span>
-        <span class="tag">Export tools</span>
-        <span class="tag">Biometric lock</span>
-        <span class="tag">Accessibility</span>
-      </div>
-    </div>
-    <div class="stack-col">
-      <h3>☁️ Optional connected features</h3>
-      <div class="tag-list">
-        <span class="tag">Account sign-in</span>
-        <span class="tag">Cloud sync</span>
-        <span class="tag">Cloud backup</span>
-        <span class="tag">Shared workspaces</span>
-        <span class="tag">Push alerts</span>
-        <span class="tag">Purchase restore</span>
-        <span class="tag">Private sharing</span>
-        <span class="tag">Team collaboration</span>
-      </div>
-    </div>
+<!-- FEATURES -->
+<section id="features" class="features">
+  <div style="max-width:1100px;margin:0 auto;">
+    <p class="section-label center">What Lucky Penny does</p>
+    <h2 class="section-title center">Everything you need, nothing you don't</h2>
+    <p class="section-sub center">A full personal finance suite that runs on your phone — free, offline, and private by default.</p>
   </div>
+
+  <div class="outcomes">
+
+    <div class="outcome">
+      <div class="outcome-text">
+        <span class="kicker">Track</span>
+        <h3>Know where the money goes</h3>
+        <ul class="outcome-list">
+          <li><span class="check">✓</span><span>Log an expense in seconds — amount, category, note, receipt scan</span></li>
+          <li><span class="check">✓</span><span>Smart auto-categories learn from your edits</span></li>
+          <li><span class="check">✓</span><span>Recurring transactions and 15+ currencies with automatic conversion</span></li>
+        </ul>
+      </div>
+      <div class="outcome-shot">
+        <img src="assets/screenshots/2-quickadd.webp" width="640" height="1391" loading="lazy" decoding="async" alt="Logging a new transaction with amount, currency and category" />
+      </div>
+    </div>
+
+    <div class="outcome flip">
+      <div class="outcome-text">
+        <span class="kicker">Plan</span>
+        <h3>See next month before it happens</h3>
+        <ul class="outcome-list">
+          <li><span class="check">✓</span><span>Budgets that warn you before you overspend</span></li>
+          <li><span class="check">✓</span><span>Savings goals with a monthly target calculator</span></li>
+          <li><span class="check">✓</span><span>A spending forecast built from your own history</span></li>
+        </ul>
+      </div>
+      <div class="outcome-shot">
+        <img src="assets/screenshots/3-budgets.webp" width="640" height="1391" loading="lazy" decoding="async" alt="Monthly and weekly budgets with live progress bars" />
+      </div>
+    </div>
+
+    <div class="outcome">
+      <div class="outcome-text">
+        <span class="kicker">Share</span>
+        <h3>Split costs, not trust</h3>
+        <ul class="outcome-list">
+          <li><span class="check">✓</span><span>Split trips, dinners and bills — equal, custom shares or percentages</span></li>
+          <li><span class="check">✓</span><span>Settle up with a QR code, even offline</span></li>
+          <li><span class="check">✓</span><span>Per-person balances, so nobody loses track</span></li>
+        </ul>
+      </div>
+      <div class="outcome-shot">
+        <img src="assets/screenshots/5-group.webp" width="640" height="1391" loading="lazy" decoding="async" alt="A shared trip group with member balances and settle up" />
+      </div>
+    </div>
+
+    <div class="outcome flip">
+      <div class="outcome-text">
+        <span class="kicker">Private</span>
+        <h3>Yours alone, by default</h3>
+        <ul class="outcome-list">
+          <li><span class="check">✓</span><span>No account, no bank login, no ads, no tracking</span></li>
+          <li><span class="check">✓</span><span>Everything works offline — your data stays on your phone</span></li>
+          <li><span class="check">✓</span><span>Optional sync and backup, only if you turn them on</span></li>
+        </ul>
+      </div>
+      <div class="outcome-shot">
+        <img src="assets/screenshots/6-privacy.webp" width="640" height="1391" loading="lazy" decoding="async" alt="First launch screen: all data stays on this device" />
+      </div>
+    </div>
+
+  </div>
+
+  <p class="features-more">
+    Plus receipt scanning, PDF reports, CSV/Excel/JSON export, biometric lock, home-screen widgets, 4 languages, and full accessibility support —
+    with the technical details on the <a href="how-it-works.html">How it works</a> page.
+  </p>
 </section>
 
 <!-- PLATFORMS -->
 <section id="platforms" class="platform-section">
   <p class="section-label center">Cross-platform</p>
-  <h2 class="section-title center">Android · iOS · Web</h2>
-  <p class="section-sub center">One codebase, three targets. Adaptive layout switches from bottom nav on phones to side rail on tablets and desktop.</p>
+  <h2 class="section-title center">iPhone · Android</h2>
+  <p class="section-sub center">One app, native on both. Fully usable offline, on phones and tablets.</p>
   <table class="plat-table">
     <thead>
       <tr>
         <th>Feature</th>
+        <th>iPhone</th>
         <th>Android</th>
-        <th>iOS</th>
-        <th>Web</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>Core app (transactions, budgets, savings)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
-      <tr><td>Analytics &amp; PDF reports</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
-      <tr><td>CSV / Excel / JSON export</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
-      <tr><td>Cloud backup</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
-      <tr><td>Sharing &amp; Groups (auth-gated)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
-      <tr><td>Contacts &amp; Associations</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
-      <tr><td>Secure sync</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
-      <tr><td>Accessibility settings</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
-      <tr><td>Receipt scanning</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
-      <tr><td>Camera QR scanner</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
-      <tr><td>QR import via paste-JSON</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
-      <tr><td>Transaction sharing (deep links)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-part">Partial</td></tr>
-      <tr><td>Notification sounds &amp; haptics</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
-      <tr><td>iOS Home Screen Widget</td><td class="dot-no">—</td><td class="dot-yes">✓</td><td class="dot-no">—</td></tr>
-      <tr><td>Apple Wallet import</td><td class="dot-no">—</td><td class="dot-yes">iOS 17.4+</td><td class="dot-no">—</td></tr>
-      <tr><td>Multi-lingual (EN / EL / ES / FR)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Core app — transactions, budgets, goals</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Analytics, forecast &amp; PDF reports</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Receipt scanning (on-device)</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Group splitting &amp; QR settle-up</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Multi-currency — 15+ currencies</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Import — YNAB, Splitwise, Revolut, N26, Monzo, CSV</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Export &amp; backup — CSV · Excel · PDF · JSON</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Optional cloud sync &amp; backup</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Accessibility — text size, contrast, reduce motion</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>Home-screen widget</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
+      <tr><td>4 languages — EN · EL · ES · FR</td><td class="dot-yes">✓</td><td class="dot-yes">✓</td></tr>
     </tbody>
   </table>
 </section>
 
-<!-- ROADMAP -->
-<section id="roadmap" class="roadmap-section">
-  <div class="roadmap-inner">
-    <p class="section-label center">What's coming</p>
-    <h2 class="section-title center">Roadmap</h2>
-    <p class="section-sub center">Features actively in development or planned for upcoming releases.</p>
-    <div class="roadmap-grid">
+<!-- FAQ -->
+<section id="faq" class="faq-section">
+  <p class="section-label center">Questions</p>
+  <h2 class="section-title center">Frequently asked questions</h2>
+  <div class="faq-list">
 
-      <div class="roadmap-card">
-        <h4>📷 Receipt Scanning</h4>
-        <ul>
-          <li>Scan receipts directly from Quick Add sheet</li>
-          <li>Edit individual line items in the review screen</li>
-          <li>Duplicate receipt detection by invoice number</li>
-          <li>Cloud AI extraction (higher accuracy, multi-language)</li>
-          <li>Batch import multiple receipts from gallery</li>
-          <li>Expense report PDF with attached receipt images</li>
-        </ul>
-      </div>
+    <details>
+      <summary>Is it really free?</summary>
+      <p>Yes. Free. Every feature. No account, no ads, no subscription, no trial that expires. Lucky Penny is built to be useful without ever asking for your card details.</p>
+    </details>
 
-      <div class="roadmap-card">
-        <h4>♿ Accessibility</h4>
-        <ul>
-          <li>Text size presets (XS → XL) applied app-wide</li>
-          <li>High contrast mode — auto-activates from system</li>
-          <li>In-app reduce motion toggle</li>
-          <li>Full screen reader (VoiceOver / TalkBack) pass</li>
-          <li>Tooltip labels on all icon-only buttons</li>
-        </ul>
-      </div>
+    <details>
+      <summary>Do I need an account?</summary>
+      <p>No. Everything works on first launch without signing in. An account (Sign in with Apple or Google) is only needed if you choose to turn on cloud sync or share with other people.</p>
+    </details>
 
-      <div class="roadmap-card">
-        <h4>🗑️ Data Management</h4>
-        <ul>
-          <li>Delete All Data — wipe device and cloud data</li>
-          <li>Selective sync conflict resolution UI</li>
-          <li>Sync history view for power users</li>
-          <li>Splitwise CSV import with personal share calculation</li>
-          <li>Revolut, Monzo, and YNAB import support</li>
-        </ul>
-      </div>
+    <details>
+      <summary>Where is my data stored?</summary>
+      <p>On your phone, by default. Nothing is uploaded unless you opt into sync or backup — and receipts are scanned on-device, so images never leave your phone. You can export or wipe everything at any time from Settings.</p>
+    </details>
 
-      <div class="roadmap-card">
-        <h4>📊 Analytics</h4>
-        <ul>
-          <li>Budget alerts when approaching or over limit</li>
-          <li>Multi-period budget history comparison</li>
-          <li>Export analytics charts to PDF</li>
-          <li>Spending heatmap by day of week / time</li>
-        </ul>
-      </div>
+    <details id="faq-import">
+      <summary>Can I move my data from another app?</summary>
+      <p>Yes — import in minutes from YNAB, Splitwise, Revolut, N26 or Monzo, or any CSV/Excel file, with duplicate detection. Leaving is just as easy: export to CSV, Excel, PDF or a full JSON backup whenever you like. Your data is never locked in.</p>
+    </details>
 
-      <div class="roadmap-card">
-        <h4>☁️ Sync &amp; Backup</h4>
-        <ul>
-          <li>Savings goal contributions sync across devices</li>
-          <li>Faster background sync for saved data</li>
-          <li>Scheduled automated backups</li>
-          <li>Sync status indicator on transaction tiles</li>
-        </ul>
-      </div>
+    <details>
+      <summary>What if I lose my phone?</summary>
+      <p>Turn on optional encrypted sync or cloud backup, or keep an exported JSON backup somewhere safe. Restore onto a new phone in minutes from <strong>Settings → Export / Import</strong>.</p>
+    </details>
 
-      <div class="roadmap-card">
-        <h4>📱 Platform</h4>
-        <ul>
-          <li>Android Home Screen Widget</li>
-          <li>macOS desktop build with adaptive layout</li>
-          <li>Shortcuts support on Apple devices</li>
-          <li>Web camera QR scanning</li>
-          <li>Apple Wallet import improvements</li>
-          <li>Push notifications for budgets and shared expenses</li>
-        </ul>
-      </div>
-
-    </div>
   </div>
 </section>
 
@@ -723,8 +534,12 @@
     <span>© 2026 Lucky Penny · All Rights Reserved</span>
   </div>
   <div class="footer-links">
-    <a href="terms.html">Terms</a>
+    <a href="support.html">Support</a>
     <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="delete-account.html">Delete account</a>
+    <a href="how-it-works.html">How it works</a>
+    <a href="mailto:itsggkoumas@gmail.com">itsggkoumas@gmail.com</a>
   </div>
 </footer>
 
