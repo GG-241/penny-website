@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    SETUP (one-time, ~1 minute):
+    This form sends messages via Web3Forms (free, 250 msgs/month, no account).
+    The destination email stays hidden in their dashboard — it never appears in
+    this file, so it can't be scraped from the site.
+
+    1. Go to https://web3forms.com and enter the inbox you want messages in
+    2. You'll instantly get an "Access Key" by email (looks like a1b2-...-z9)
+    3. Paste it as the value of the hidden "access_key" input below
+    4. Push — the form is live. The key being visible in source is by design;
+       the honeypot field + Web3Forms' filtering block spam.
+  -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Lucky Penny</title>
+  <meta name="description" content="Contact the Lucky Penny team: support, privacy requests, account deletion." />
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://gg-241.github.io/penny-website/contact.html" />
+  <link rel="icon" type="image/png" href="assets/img/penny_icon.png" />
+  <link rel="apple-touch-icon" href="assets/img/penny_icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/theme.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(1rem, 5vw, 3rem);
+      height: 64px;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-gem { width: 34px; height: 34px; border-radius: 8px; object-fit: contain; }
+    .nav-logo span { font-weight: 700; font-size: 1.15rem; color: var(--text); }
+    .nav-back {
+      color: var(--muted); text-decoration: none; font-size: .875rem;
+      font-weight: 500; display: flex; align-items: center; gap: .4rem;
+    }
+    .nav-back:hover { color: var(--text); }
+
+    .page-hero {
+      padding: clamp(3rem, 8vw, 5rem) clamp(1rem, 6vw, 3rem) 2.5rem;
+      text-align: center;
+      background: var(--hero-glow);
+      border-bottom: 1px solid var(--border);
+    }
+    .page-hero .label {
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: var(--violet); margin-bottom: .75rem;
+    }
+    .page-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800;
+      letter-spacing: -.03em; margin-bottom: .75rem;
+    }
+    .page-hero p { color: var(--muted); font-size: .95rem; max-width: 520px; margin: 0 auto; }
+
+    .content-wrap {
+      max-width: 640px; margin: 0 auto;
+      padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+    }
+
+    .hint-box {
+      border-radius: 10px; padding: 1rem 1.25rem;
+      margin-bottom: 1.75rem; font-size: .9rem;
+      background: var(--callout-info-bg); border: 1px solid var(--callout-info-border);
+      color: var(--callout-info-text);
+    }
+    .hint-box strong { color: inherit; font-weight: 700; }
+
+    form { display: flex; flex-direction: column; gap: .4rem; }
+    label {
+      font-size: .85rem; font-weight: 600; color: var(--text);
+      margin-top: 1.1rem;
+    }
+    label .opt { color: var(--muted); font-weight: 500; }
+    .field-hint { font-size: .8rem; color: var(--muted); margin-top: .1rem; }
+    input[type="text"], input[type="email"], select, textarea {
+      width: 100%;
+      margin-top: .35rem;
+      padding: .75rem .9rem;
+      font: inherit; font-size: .925rem;
+      color: var(--text);
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      outline: none;
+      transition: border-color .15s;
+    }
+    input:focus, select:focus, textarea:focus { border-color: var(--violet); }
+    textarea { min-height: 150px; resize: vertical; }
+    select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%; background-size: 5px 5px; background-repeat: no-repeat; }
+
+    .hp { position: absolute; left: -9999px; height: 0; opacity: 0; }
+
+    button[type="submit"] {
+      margin-top: 1.5rem;
+      padding: .85rem 1.5rem;
+      font: inherit; font-weight: 700; font-size: .95rem;
+      color: #0f1115;
+      background: var(--accent-primary);
+      border: none; border-radius: 12px;
+      cursor: pointer;
+      transition: background .15s, transform .15s;
+    }
+    button[type="submit"]:hover { background: var(--accent-primary-hover); transform: translateY(-1px); }
+    button[type="submit"]:disabled { opacity: .6; cursor: default; transform: none; }
+
+    #form-status { margin-top: 1rem; font-size: .9rem; min-height: 1.4em; }
+    #form-status.ok { color: var(--callout-success-text); }
+    #form-status.err { color: var(--callout-warn-text); }
+
+    .privacy-note {
+      margin-top: 2rem; font-size: .8rem; color: var(--muted);
+      border-top: 1px solid var(--border); padding-top: 1.25rem;
+    }
+
+    footer {
+      background: var(--surface); border-top: 1px solid var(--border);
+      padding: 2rem clamp(1rem, 6vw, 3rem);
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+    .footer-logo span { color: var(--muted); font-size: .875rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); font-size: .85rem; text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img class="logo-gem" src="assets/img/penny_icon.png" alt="Lucky Penny logo" />
+    <span>Lucky Penny</span>
+  </a>
+  <a class="nav-back" href="index.html">← Back to home</a>
+</nav>
+<div class="page-hero">
+  <p class="label">Contact</p>
+  <h1>Get in touch</h1>
+  <p>Support, privacy requests, account deletion — one form for everything. We aim to reply within 3 business days.</p>
+</div>
+<div class="content-wrap">
+
+  <div class="hint-box">
+    <strong>App problem?</strong> Include your device model, OS version and app version
+    (<strong>Settings → About</strong>). For crash issues, copy the reference shown at
+    <strong>Settings → Error report</strong> into your message — it contains no transaction data.
+  </div>
+
+  <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" novalidate>
+    <input type="hidden" name="access_key" value="PASTE-WEB3FORMS-ACCESS-KEY-HERE" />
+    <input type="hidden" name="from_name" value="Lucky Penny website" />
+    <input type="hidden" name="subject" id="f-subject" value="Lucky Penny — new message" />
+    <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+    <label for="f-name">Your name <span class="opt">(optional)</span></label>
+    <input id="f-name" name="name" type="text" autocomplete="name" />
+
+    <label for="f-email">Your email *</label>
+    <input id="f-email" name="email" type="email" required autocomplete="email" />
+    <p class="field-hint">For account, deletion or privacy requests: use the email linked to your Lucky Penny account (your Apple or Google sign-in), so we can verify it's you.</p>
+
+    <label for="f-topic">Topic</label>
+    <select id="f-topic" name="topic">
+      <option value="support">Support</option>
+      <option value="privacy">Privacy request (GDPR)</option>
+      <option value="deletion">Delete my data or account</option>
+      <option value="other">Something else</option>
+    </select>
+
+    <label for="f-message">Message *</label>
+    <textarea id="f-message" name="message" required minlength="10"></textarea>
+
+    <button type="submit" id="f-submit">Send message</button>
+    <p id="form-status" role="status" aria-live="polite"></p>
+  </form>
+
+  <p class="privacy-note">
+    What you send here is used only to answer your message. Nothing is added to a list,
+    nothing is shared. See the <a href="privacy.html" style="color:var(--violet)">privacy policy</a>.
+  </p>
+
+</div>
+<footer>
+  <div class="footer-logo">
+    <img class="logo-gem" src="assets/img/penny_icon.png" alt="Lucky Penny logo" style="width:28px;height:28px;" />
+    <span>&copy; 2026 Lucky Penny &middot; All Rights Reserved</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="support.html">Support</a>
+    <a href="terms.html">Terms</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="delete-account.html">Delete account</a>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var TOPICS = {
+      support:  { label: 'Support',                    subject: 'Lucky Penny — support request' },
+      privacy:  { label: 'Privacy request (GDPR)',     subject: 'Lucky Penny — privacy request' },
+      deletion: { label: 'Delete my data or account',  subject: 'Lucky Penny — DELETE REQUEST' },
+      other:    { label: 'Something else',             subject: 'Lucky Penny — new message' }
+    };
+
+    var form = document.getElementById('contact-form');
+    var topicSel = document.getElementById('f-topic');
+    var subjectEl = document.getElementById('f-subject');
+    var status = document.getElementById('form-status');
+    var submitBtn = document.getElementById('f-submit');
+
+    // Preselect topic from ?topic=… (e.g. linked from the privacy/deletion pages)
+    var wanted = new URLSearchParams(window.location.search).get('topic');
+    if (wanted && TOPICS[wanted]) topicSel.value = wanted;
+
+    function syncSubject() { subjectEl.value = TOPICS[topicSel.value].subject; }
+    topicSel.addEventListener('change', syncSubject);
+    syncSubject();
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.email.value || form.email.value.indexOf('@') < 0) {
+        status.className = 'err';
+        status.textContent = 'Please enter a valid email address so we can reply.';
+        return;
+      }
+      if (!form.message.value || form.message.value.trim().length < 10) {
+        status.className = 'err';
+        status.textContent = 'Please write a message (a few words is fine).';
+        return;
+      }
+      submitBtn.disabled = true;
+      status.className = '';
+      status.textContent = 'Sending…';
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form)))
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.success) {
+            status.className = 'ok';
+            status.textContent = 'Sent — thank you. We reply within 3 business days.';
+            form.reset();
+            topicSel.value = wanted && TOPICS[wanted] ? wanted : 'support';
+            syncSubject();
+          } else { throw new Error(data.message || 'Send failed'); }
+        })
+        .catch(function () {
+          status.className = 'err';
+          status.textContent = 'Couldn\'t send right now — please try again in a few minutes.';
+        })
+        .finally(function () { submitBtn.disabled = false; });
+    });
+  })();
+</script>
+
+</body>
+</html>
