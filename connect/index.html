@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Connect on Lucky Penny</title>
+  <meta name="description" content="Add someone on Lucky Penny — the offline-first personal finance app." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Add me on Lucky Penny" />
+  <meta property="og:description" content="Track expenses, split bills, and manage budgets together — all offline-first." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://gg-241.github.io/penny-website/assets/img/og-image.jpg" />
+
+  <!-- Apple Smart Banner (prompts install if app not present) -->
+  <meta name="apple-itunes-app" content="app-id=6760491274" />
+
+  <link rel="icon" type="image/png" href="../assets/img/penny_icon.png" />
+  <link rel="apple-touch-icon" href="../assets/img/penny_icon.png" />
+  <link rel="stylesheet" href="../assets/css/theme.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 16px;
+      margin: 0 auto 1.25rem;
+      display: block;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+
+    .share-id {
+      font-family: 'SF Mono', 'Menlo', 'Consolas', monospace;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--accent-primary);
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+      word-break: break-all;
+      user-select: all;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      text-align: center;
+      margin-bottom: 0.75rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: var(--accent-primary);
+      color: #0f1115;
+    }
+
+    .btn-secondary {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-store {
+      background: var(--surface-2);
+      color: var(--text);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      margin: 1.25rem 0;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .divider::before { margin-right: 0.75rem; }
+    .divider::after { margin-left: 0.75rem; }
+
+    .hint {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .hint code {
+      background: var(--surface-2);
+      padding: 0.15em 0.4em;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+
+    .name-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .hidden { display: none; }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f7f5f0;
+        --surface: #ffffff;
+        --surface-2: #f0ede6;
+        --surface-3: #e6e3db;
+        --text: #1a1a1a;
+        --text-muted: #6b7280;
+        --border: #d4d0c8;
+        --accent-primary: #9e8344;
+        --accent-primary-hover: #b8974f;
+        --accent-success: #2e6a57;
+        --accent-success-soft: #e6f5f0;
+        --accent-danger: #a35c5c;
+        --accent-neutral: #7c8798;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="../assets/img/penny_icon.png" alt="Lucky Penny" class="logo" />
+    <h1 id="heading">Connect on Lucky Penny</h1>
+    <p class="subtitle" id="subtitle">Add a contact and start managing finances together.</p>
+
+    <div id="name-section" class="hidden">
+      <div class="name-label" id="display-name"></div>
+    </div>
+
+    <div class="share-id" id="share-id"></div>
+
+    <!-- Open in app button (for mobile with app installed) -->
+    <a id="open-btn" href="#" class="btn btn-primary">Open in Lucky Penny</a>
+
+    <div class="divider">or download</div>
+
+    <!-- Store buttons -->
+    <a id="ios-btn" href="https://apps.apple.com/app/penny-finance/id6760491274"
+       class="btn btn-store">
+      <span>📱</span> Download on the App Store
+    </a>
+    <a id="android-btn" href="https://play.google.com/store/apps/details?id=com.luckypenny.app"
+       class="btn btn-store">
+      <span>🤖</span> Get it on Google Play
+    </a>
+
+    <p class="hint">
+      Don't have the app? Copy the sharing ID above and enter it in
+      <strong>Lucky Penny → Contacts → Add Contact</strong>.
+    </p>
+  </div>
+
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var shareId = params.get('shareId') || '';
+      var displayName = params.get('name') || '';
+      var currency = params.get('cur') || '';
+
+      // Display the sharing ID
+      var shareIdEl = document.getElementById('share-id');
+      shareIdEl.textContent = shareId || 'LP-XXXXXXXXXXXX';
+
+      // Display name if provided
+      var nameSection = document.getElementById('name-section');
+      var nameEl = document.getElementById('display-name');
+      if (displayName) {
+        nameSection.classList.remove('hidden');
+        nameEl.textContent = displayName;
+      }
+
+      // Update the heading based on available info
+      var heading = document.getElementById('heading');
+      if (displayName) {
+        heading.textContent = 'Add ' + displayName + ' on Lucky Penny';
+      }
+
+      // Deep link for "Open in Lucky Penny" button
+      var openBtn = document.getElementById('open-btn');
+      var deepLink = 'luckypenny://connect?shareId=' + encodeURIComponent(shareId);
+      if (displayName) {
+        deepLink += '&name=' + encodeURIComponent(displayName);
+      }
+      if (currency) {
+        deepLink += '&cur=' + encodeURIComponent(currency);
+      }
+      openBtn.href = deepLink;
+
+      // Platform detection: hide irrelevant store button
+      var iosBtn = document.getElementById('ios-btn');
+      var androidBtn = document.getElementById('android-btn');
+      var ua = navigator.userAgent || navigator.vendor || window.opera;
+
+      if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+        // iOS: try deep link, show App Store as fallback
+        androidBtn.style.display = 'none';
+        // On iOS, the deep link often doesn't work from Safari without
+        // universal links. We set a timeout to redirect to App Store if
+        // the app doesn't open.
+        openBtn.addEventListener('click', function(e) {
+          var start = Date.now();
+          setTimeout(function() {
+            if (Date.now() - start < 2000) {
+              window.location.href = 'https://apps.apple.com/app/penny-finance/id6760491274';
+            }
+          }, 1500);
+        });
+      } else if (/android/i.test(ua)) {
+        // Android: try deep link, show Play Store as fallback
+        iosBtn.style.display = 'none';
+        // Android Intent fallback is handled by the app_links package
+      }
+
+      // Update Open Graph meta tags with user info
+      var ogTitle = document.querySelector('meta[property="og:title"]');
+      if (ogTitle && displayName) {
+        ogTitle.setAttribute('content', 'Add ' + displayName + ' on Lucky Penny');
+      }
+    })();
+  </script>
+</body>
+</html>
